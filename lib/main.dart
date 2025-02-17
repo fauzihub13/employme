@@ -1,15 +1,22 @@
+import 'package:employme/core/constants/colors.dart';
 import 'package:employme/presentation/home/pages/landing_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
+import 'presentation/auth/onboarding_page.dart';
 
-void main() async {
+// void main() async{
+//   runApp(const MyApp());
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+// }
+
+void main() {
   runApp(const MyApp());
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: const LandingPage(),
+      home: const OnboardingPage(),
     );
   }
 }
