@@ -6,12 +6,17 @@ import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 import 'presentation/auth/onboarding_page.dart';
 
-void main() async{
+// void main() async{
+//   runApp(const MyApp());
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+// }
+
+void main() {
   runApp(const MyApp());
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

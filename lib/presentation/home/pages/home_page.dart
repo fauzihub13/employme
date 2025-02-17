@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-=======
 import 'package:employme/core/components/main_app_bar.dart';
 import 'package:employme/core/components/search_input.dart';
 import 'package:employme/core/constants/colors.dart';
 import 'package:employme/presentation/home/widgets/title_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
->>>>>>> 7ce04ade7932b3fbcc9de63b6159fe097679d680
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,9 +16,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-      body: Center(child: Text('HOME PAGE')),
-=======
       body: Column(
         children: [
           MainAppBar(),
@@ -199,7 +192,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
->>>>>>> 7ce04ade7932b3fbcc9de63b6159fe097679d680
     );
   }
 }
