@@ -33,6 +33,8 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               SvgPicture.asset(
                 _menuIcons[key]!,
+                height: 24,
+                width: 24,
                 colorFilter:
                     const ColorFilter.mode(AppColors.disabled, BlendMode.srcIn),
               ),
@@ -46,6 +48,8 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               SvgPicture.asset(
                 _menuIcons[key]!,
+                height: 24,
+                width: 24,
                 colorFilter: const ColorFilter.mode(
                     AppColors.primaryBlue, BlendMode.srcIn),
               ),

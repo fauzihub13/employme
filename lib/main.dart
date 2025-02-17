@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'EmployMe',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.baseColor),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: const OnboardingPage(),
