@@ -15,12 +15,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.17
-<<<<<<< HEAD
-=======
   http: ^1.3.0
   intl: ^0.20.2
   shared_preferences: ^2.5.2
->>>>>>> 0d68b819b4aa7abfb2fffbedbfdf5290657e1466
   smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:
