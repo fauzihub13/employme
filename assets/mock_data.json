@@ -1,0 +1,170 @@
+{
+    "jobs": [
+        {
+            "id": 1,
+            "title": "Mobile App Designer",
+            "salary": "Rp 5.000.000 - Rp 7.000.000",
+            "category": "Design",
+            "location": "Jakarta",
+            "description": "We are looking for a talented Mobile App Designer to create amazing user experiences. The ideal candidate should have a strong portfolio, excellent visual design skills, and proficiency in design software.",
+            "company": "TechSolutions Indonesia",
+            "postedDate": "2025-02-15",
+            "requirements": [
+                "Minimum 2 years of experience in mobile app design",
+                "Proficiency in Figma, Adobe XD, or Sketch",
+                "Understanding of iOS and Android design guidelines",
+                "Portfolio showcasing previous mobile design work"
+            ],
+            "contactEmail": "careers@techsolutions.id"
+        },
+        {
+            "id": 2,
+            "title": "Flutter Developer",
+            "salary": "Rp 8.000.000 - Rp 12.000.000",
+            "category": "Development",
+            "location": "Bandung",
+            "description": "We're seeking a skilled Flutter Developer to help build cross-platform mobile applications. You'll work on exciting projects using the latest technologies and collaborate with a team of talented developers.",
+            "company": "MobilePro",
+            "postedDate": "2025-02-14",
+            "requirements": [
+                "Experience with Flutter and Dart",
+                "Knowledge of state management solutions (BLoC, Provider, Redux)",
+                "Understanding of RESTful APIs and JSON parsing",
+                "Familiarity with version control systems like Git"
+            ],
+            "contactEmail": "jobs@mobilepro.co.id"
+        },
+        {
+            "id": 3,
+            "title": "UI/UX Researcher",
+            "salary": "Rp 6.000.000 - Rp 9.000.000",
+            "category": "Research",
+            "location": "Remote",
+            "description": "Join our team as a UI/UX Researcher to help us understand user needs and behaviors. You'll conduct user interviews, usability testing, and translate research findings into actionable insights.",
+            "company": "UserFirst Design",
+            "postedDate": "2025-02-12",
+            "requirements": [
+                "Background in psychology, human-computer interaction, or related field",
+                "Experience conducting user interviews and usability testing",
+                "Strong analytical skills and attention to detail",
+                "Excellent communication and presentation abilities"
+            ],
+            "contactEmail": "research@userfirst.com"
+        },
+        {
+            "id": 4,
+            "title": "Frontend Developer",
+            "salary": "Rp 10.000.000 - Rp 15.000.000",
+            "category": "Development",
+            "location": "Surabaya",
+            "description": "We are looking for a Frontend Developer to join our dynamic team. You'll be responsible for implementing visual elements and creating responsive designs that deliver exceptional user experiences.",
+            "company": "WebWizards",
+            "postedDate": "2025-02-10",
+            "requirements": [
+                "Proficiency in HTML, CSS, and JavaScript",
+                "Experience with modern frontend frameworks (React, Vue, Angular)",
+                "Knowledge of responsive design principles",
+                "Understanding of cross-browser compatibility issues"
+            ],
+            "contactEmail": "hiring@webwizards.id"
+        },
+        {
+            "id": 5,
+            "title": "Mobile QA Tester",
+            "salary": "Rp 4.500.000 - Rp 7.500.000",
+            "category": "Quality Assurance",
+            "location": "Yogyakarta",
+            "description": "We're looking for a detail-oriented Mobile QA Tester to ensure our applications meet the highest quality standards. You'll design test cases, execute tests, and document bugs to help deliver flawless mobile experiences.",
+            "company": "QualityFirst Apps",
+            "postedDate": "2025-02-08",
+            "requirements": [
+                "Experience in mobile application testing (iOS and Android)",
+                "Knowledge of testing methodologies and best practices",
+                "Familiarity with test management and bug tracking tools",
+                "Strong analytical and problem-solving skills"
+            ],
+            "contactEmail": "qa@qualityfirst.co.id"
+        },
+        {
+            "id": 6,
+            "title": "Product Manager",
+            "salary": "Rp 15.000.000 - Rp 22.000.000",
+            "category": "Management",
+            "location": "Jakarta",
+            "description": "We're seeking an experienced Product Manager to lead our mobile app development efforts. You'll define product strategy, gather requirements, and work with cross-functional teams to deliver outstanding mobile experiences.",
+            "company": "InnovateTech",
+            "postedDate": "2025-02-05",
+            "requirements": [
+                "5+ years of experience in product management for mobile applications",
+                "Strong understanding of mobile app development lifecycle",
+                "Excellent communication and leadership skills",
+                "Ability to translate business requirements into product features"
+            ],
+            "contactEmail": "careers@innovatetech.id"
+        },
+        {
+            "id": 7,
+            "title": "Content Writer",
+            "salary": "Rp 4.000.000 - Rp 6.000.000",
+            "category": "Content",
+            "location": "Remote",
+            "description": "Join our team as a Content Writer to create engaging, high-quality content for our mobile apps and websites. You'll work closely with designers and developers to ensure a cohesive user experience through compelling copy.",
+            "company": "WordCraft Media",
+            "postedDate": "2025-02-03",
+            "requirements": [
+                "Excellent writing and editing skills in Bahasa Indonesia and English",
+                "Understanding of UX writing principles",
+                "Ability to adapt tone and style for different platforms",
+                "Experience writing for digital products is a plus"
+            ],
+            "contactEmail": "writers@wordcraft.id"
+        },
+        {
+            "id": 8,
+            "title": "Backend Developer",
+            "salary": "Rp 12.000.000 - Rp 18.000.000",
+            "category": "Development",
+            "location": "Bali",
+            "description": "We're looking for a skilled Backend Developer to build robust APIs and server-side applications. You'll work with a variety of technologies to create scalable and efficient backend systems for our mobile applications.",
+            "company": "CloudNative Solutions",
+            "postedDate": "2025-02-01",
+            "requirements": [
+                "Experience with Node.js, Python, or Java",
+                "Knowledge of database systems (SQL and NoSQL)",
+                "Understanding of RESTful API design principles",
+                "Familiarity with cloud services (AWS, GCP, or Azure)"
+            ],
+            "contactEmail": "jobs@cloudnative.id"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "email": "user@example.com",
+            "password": "password123"
+        },
+        {
+            "id": 2,
+            "email": "demo@bantu.id",
+            "password": "demo1234"
+        }
+    ],
+    "categories": [
+        "Development",
+        "Design",
+        "Management",
+        "Research",
+        "Quality Assurance",
+        "Content",
+        "Marketing",
+        "Customer Support"
+    ],
+    "locations": [
+        "Jakarta",
+        "Bandung",
+        "Surabaya",
+        "Yogyakarta",
+        "Bali",
+        "Remote"
+    ]
+}

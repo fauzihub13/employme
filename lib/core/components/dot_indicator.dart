@@ -1,4 +1,4 @@
-import 'package:employme/src/core/constants/colors.dart'; // Import your colors
+import '/core/constants/colors.dart'; // Import your colors
 import 'package:flutter/material.dart';
 
 class DotIndicator extends StatelessWidget {

@@ -1,9 +1,9 @@
-import 'package:employme/src/core/components/dot_indicator.dart';
-import 'package:employme/src/core/constants/colors.dart';
-import 'package:employme/src/presentation/bookmark/pages/bookmark_page.dart';
-import 'package:employme/src/presentation/home/pages/home_page.dart';
-import 'package:employme/src/presentation/message/pages/message_page.dart';
-import 'package:employme/src/presentation/profile/pages/profile_page.dart';
+import 'package:employme/core/components/dot_indicator.dart';
+import 'package:employme/core/constants/colors.dart';
+import 'package:employme/presentation/bookmark/pages/bookmark_page.dart';
+import 'package:employme/presentation/home/pages/home_page.dart';
+import 'package:employme/presentation/message/pages/message_page.dart';
+import 'package:employme/presentation/profile/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

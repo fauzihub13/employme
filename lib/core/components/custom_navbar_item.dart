@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:employme/src/core/constants/colors.dart';
+import '/core/constants/colors.dart';
 
 class CustomNavbarItem {
   static BottomNavigationBarItem create(
