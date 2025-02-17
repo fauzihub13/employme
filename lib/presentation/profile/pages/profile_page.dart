@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/experince_card.dart';
+import '../widgets/experience_card.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -174,15 +174,47 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ],
                       ),
-                      Container(
-                        height: 74,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: ExperinceCard(images: 'assets/images/logo1.png', experienceTitle: 'Mobile Developer', company: 'Spotify', location: 'Remote', date: 'Dec 20 - Feb 21',),
-                      )
+
+                      ExperienceCard(
+                        images: 'assets/images/logo1.png',
+                        experienceTitle: 'Mobile Developer',
+                        company: 'Spotify',
+                        location: 'Remote',
+                        date: 'Dec 20 - Feb 21',
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          const Text(
+                            'Education',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
+                          const Spacer(),
+                          TextButton(
+                            onPressed: () {
+                              //print('KLIKKK');
+                            },
+                            child: const Text(
+                              'See All',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 13,
+                                fontFamily: 'Poppins',
+                              ),
+                              textAlign: TextAlign.right,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              softWrap: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      // EducationCard
                     ],
                   ),
                   // Center(child: Text('PROFILE PAGE')),
