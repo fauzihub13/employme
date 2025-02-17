@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class AppColors {
 
   /// Primary Color
-  /// grey = #B7B7B7
+  static const Color primaryBlue = Color(0xff00AAFF);
+
+  // Base Color
+  static const Color baseColor = Color(0xffFAFAFD); 
+
   static const Color grey = Color(0xffB7B7B7);
 
   /// light = #F8F5FF
@@ -25,7 +29,7 @@ class AppColors {
   static const Color card = Color(0xffE5E5E5);
 
   /// disabled = #C8D1E1
-  static const Color disabled = Color(0xffC8D1E1);
+  static const Color disabled = Color(0xffCACBCE);
 
   /// subtitle = #7890CD
   static const Color greyShadow = Color.fromARGB(255, 232, 232, 232);
