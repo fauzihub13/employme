@@ -1,5 +1,4 @@
-import 'package:employme/src/core/constants/colors.dart';
-import 'package:employme/src/presentation/home/pages/landing_page.dart';
+import 'package:employme/presentation/home/pages/landing_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'EmployMe',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.baseColor),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: const LandingPage(),

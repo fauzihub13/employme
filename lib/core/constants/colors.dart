@@ -8,13 +8,12 @@ class AppColors {
   // Base Color
   static const Color baseColor = Color(0xffFAFAFD); 
 
-  static const Color grey = Color(0xffB7B7B7);
+  static const Color darkGrey = Color(0xff95969D);
 
-  /// light = #F8F5FF
-  static const Color light = Color(0xffF8F5FF);
+  static const Color lightGrey = Color(0xffF2F2F3);
 
-  /// black = #000000
-  static const Color black = Color(0xff000000);
+  /// black 
+  static const Color black = Color(0xff0D0D26);
 
   /// white = #FFFFFF
   static const Color white = Color(0xffFFFFFF);
@@ -24,9 +23,6 @@ class AppColors {
 
   /// red = #F4261A
   static const Color red = Color(0xffF4261A);
-
-  /// card = #E5E5E5
-  static const Color card = Color(0xffE5E5E5);
 
   /// disabled = #C8D1E1
   static const Color disabled = Color(0xffCACBCE);
