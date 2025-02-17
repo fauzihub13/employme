@@ -77,18 +77,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: SmoothPageIndicator(
                 controller: _pageController,
                 count: onBoards.length,
-                effect: const ExpandingDotsEffect(
-                  dotColor: AppColors.disabled,
+                effect: const WormEffect(
+                  dotHeight: 6,
+                  dotWidth: 24,
                   activeDotColor: AppColors.primaryBlue,
-                  dotHeight: 10,
-                  dotWidth: 10,
-                  offset: 8,
-                  spacing: 8,
+                  dotColor: AppColors.disabled,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 42),
+              padding: const EdgeInsets.fromLTRB(20, 40, 40, 40),
               child: Row(
                 children: [
                   if (currentPage > 0)
@@ -101,11 +99,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ),
                         );
                       },
-                      child: Text(
-                        'Skip',
-                        style: const TextStyle(
-                          color: Color(0xff95969D),
-                          fontSize: 14,
+                      child: SizedBox(
+                        width: 100,
+                        height: 56,
+                        child: Center(
+                          child: Text(
+                            'Skip',
+                            style: const TextStyle(
+                              color: Color(0xff95969D),
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                       ),
                     ),
