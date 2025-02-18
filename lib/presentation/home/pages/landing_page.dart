@@ -50,8 +50,8 @@ class _LandingPageState extends State<LandingPage> {
                 _menuIcons[key]!,
                 height: 24,
                 width: 24,
-                colorFilter: const ColorFilter.mode(
-                    AppColors.primaryBlue, BlendMode.srcIn),
+                colorFilter:
+                    const ColorFilter.mode(AppColors.primaryBlue, BlendMode.srcIn),
               ),
               const DotIndicator(),
             ],

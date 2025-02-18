@@ -73,10 +73,10 @@ class _BannerJobState extends State<BannerJob> {
                   },
                   child: SvgPicture.asset(
                     'assets/icons/bookmark.svg',
-                    width: 26,
-                    height: 26,
+                    width: 24,
+                    height: 24,
                     colorFilter: ColorFilter.mode(
-                        isSaved ? Colors.yellow : AppColors.darkGrey,
+                        isSaved ? Colors.white : AppColors.darkGrey,
                         BlendMode.srcATop),
                   ),
                 )

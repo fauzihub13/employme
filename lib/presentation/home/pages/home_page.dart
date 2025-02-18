@@ -4,6 +4,7 @@ import 'package:employme/core/components/main_app_bar.dart';
 import 'package:employme/core/components/search_input.dart';
 import 'package:employme/core/constants/colors.dart';
 import 'package:employme/presentation/home/widgets/title_section.dart';
+import 'package:employme/presentation/job/pages/job_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -80,7 +81,15 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: _bannerJobList[index],
+                          child: GestureDetector(
+                              onTap: () {
+                                // print('HOOOOOOO');
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return JobListPage();
+                                }));
+                              },
+                              child: _bannerJobList[index]),
                         );
                       },
                     ),
