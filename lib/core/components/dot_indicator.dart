@@ -7,8 +7,8 @@ class DotIndicator extends StatelessWidget {
 
   const DotIndicator({
     super.key,
-    this.color = AppColors.primaryBlue, // Default color if not provided
-    this.size = 6.0, // Default size
+    this.color = AppColors.primaryBlue, 
+    this.size = 6.0, 
   });
 
   @override

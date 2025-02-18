@@ -10,6 +10,8 @@ class BannerJob extends StatefulWidget {
 }
 
 class _BannerJobState extends State<BannerJob> {
+  bool isSaved = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +23,7 @@ class _BannerJobState extends State<BannerJob> {
               image: const AssetImage('assets/images/overlay_banner.png'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                  Colors.white.withValues(alpha: 0.2), BlendMode.modulate))),
+                  Colors.white.withValues(alpha: 0.1), BlendMode.modulate))),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -63,59 +65,86 @@ class _BannerJobState extends State<BannerJob> {
                     ),
                   ],
                 )),
-                SvgPicture.asset(
-                  'assets/icons/bookmark.svg',
-                  width: 26,
-                  height: 26,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isSaved = !isSaved;
+                    });
+                  },
+                  child: SvgPicture.asset(
+                    'assets/icons/bookmark.svg',
+                    width: 26,
+                    height: 26,
+                    colorFilter: ColorFilter.mode(
+                        isSaved ? Colors.yellow : AppColors.darkGrey,
+                        BlendMode.srcATop),
+                  ),
                 )
               ],
             ),
-            Row(
-              spacing: 12,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                    child: Text(
-                      'Junior',
-                      style: TextStyle(color: Colors.white),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                spacing: 12,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: Text(
+                        'Junior',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                    child: Text(
-                      'Senior',
-                      style: TextStyle(color: Colors.white),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: Text(
+                        'Senior',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                    child: Text(
-                      'Internship',
-                      style: TextStyle(color: Colors.white),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: Text(
+                        'Internship',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: Text(
+                        'Internship',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
