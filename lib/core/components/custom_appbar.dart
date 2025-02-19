@@ -32,21 +32,14 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               canBack
-                  ? Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromARGB(255, 226, 226, 226),
-                          width: 0.7,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                  ? SizedBox(
+                      width: 36,
+                      height: 36,
                       child: IconButton(
                         icon: SvgPicture.asset(
                           'assets/icons/back.svg',
                           colorFilter: const ColorFilter.mode(
-                              AppColors.primaryBlue, BlendMode.srcIn),
+                              AppColors.black, BlendMode.srcIn),
                           width: 30,
                           height: 30,
                         ),
@@ -65,7 +58,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   title,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: textColor ?? AppColors.primaryBlue,
+                    color: textColor ?? AppColors.black,
                     fontWeight: FontWeight.w500,
                     fontSize: 18.0,
                   ),

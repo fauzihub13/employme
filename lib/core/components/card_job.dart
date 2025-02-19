@@ -2,7 +2,9 @@ import 'package:employme/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class CardJob extends StatelessWidget {
-  const CardJob({super.key});
+  final double? borderRadius;
+
+  const CardJob({super.key, this.borderRadius = 24});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class CardJob extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(borderRadius!),
       ),
       child: Row(
         spacing: 16,
@@ -48,7 +50,7 @@ class CardJob extends StatelessWidget {
                     Flexible(
                       flex: 1,
                       child: Text(
-                        '\$96,000/year',
+                        '\$96,000/y',
                         maxLines: 1,
                         textAlign: TextAlign.end,
                         style: TextStyle(

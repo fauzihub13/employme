@@ -4,6 +4,10 @@ class AppColors {
   /// Primary Color
   static const Color primaryBlue = Color(0xff356899);
 
+  // Blue checkbox
+  static const Color blue2 = Color(0xff5386E4);
+
+
   // Base Color (background primary color)
   static const Color baseColor = Color(0xffFAFAFD);
 

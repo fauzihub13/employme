@@ -3,8 +3,8 @@ import 'package:employme/core/components/card_job.dart';
 import 'package:employme/core/components/main_app_bar.dart';
 import 'package:employme/core/components/search_input.dart';
 import 'package:employme/core/constants/colors.dart';
-import 'package:employme/presentation/home/widgets/title_section.dart';
-import 'package:employme/presentation/job/pages/job_list_page.dart';
+import 'package:employme/core/components/title_section.dart';
+import 'package:employme/presentation/job/pages/job_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                                 // print('HOOOOOOO');
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return JobListPage();
+                                  return JobDetailPage();
                                 }));
                               },
                               child: _bannerJobList[index]),

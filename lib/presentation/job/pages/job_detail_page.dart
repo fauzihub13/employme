@@ -1,18 +1,18 @@
 import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/custom_header_clipper.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/presentation/job/pages/job_apply_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-// import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
-class JobListPage extends StatefulWidget {
-  const JobListPage({super.key});
+class JobDetailPage extends StatefulWidget {
+  const JobDetailPage({super.key});
 
   @override
-  State<JobListPage> createState() => _JobListPageState();
+  State<JobDetailPage> createState() => _JobDetailPageState();
 }
 
-class _JobListPageState extends State<JobListPage>
+class _JobDetailPageState extends State<JobDetailPage>
     with SingleTickerProviderStateMixin {
   bool isSaved = false;
 
@@ -73,16 +73,20 @@ class _JobListPageState extends State<JobListPage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: SvgPicture.asset(
-                              'assets/icons/back.svg',
-                              height: 20,
-                              width: 20,
-                              colorFilter: ColorFilter.mode(
-                                  AppColors.white, BlendMode.srcIn),
+                          SizedBox(
+                            width: 36,
+                            height: 36,
+                            child: IconButton(
+                              icon: SvgPicture.asset(
+                                'assets/icons/back.svg',
+                                colorFilter: const ColorFilter.mode(
+                                    AppColors.white, BlendMode.srcIn),
+                                width: 30,
+                                height: 30,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                             ),
                           ),
                           GestureDetector(
@@ -213,7 +217,7 @@ class _JobListPageState extends State<JobListPage>
                     Expanded(
                       child: TabBarView(controller: tabController, children: [
                         Text(
-                          'Hi 1',
+                          '\u2022 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               color: AppColors.darkGrey, fontSize: 16),
@@ -247,7 +251,13 @@ class _JobListPageState extends State<JobListPage>
       ),
       bottomNavigationBar: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-          child: CustomButton.filled(onPressed: () {}, label: 'Apply Now')),
+          child: CustomButton.filled(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const JobApplyPage();
+                }));
+              },
+              label: 'Apply Now')),
     );
   }
 }
