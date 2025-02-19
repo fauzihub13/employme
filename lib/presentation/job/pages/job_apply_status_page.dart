@@ -1,5 +1,6 @@
 import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/presentation/job/pages/job_apply_tracking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -42,7 +43,14 @@ class _JobApplyStatusPageState extends State<JobApplyStatusPage> {
             const SizedBox(
               height: 60,
             ),
-            CustomButton.filled(onPressed: () {}, label: 'Track Job'),
+            CustomButton.filled(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context,
+                      MaterialPageRoute(builder: (context) {
+                    return const JobApplyTracking();
+                  }), (route) => route.isFirst);
+                },
+                label: 'Track Job'),
             const SizedBox(
               height: 20,
             ),

@@ -1,3 +1,4 @@
+import 'package:employme/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/auth/onboarding_page.dart';
@@ -23,7 +24,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'EmployMe',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: AppColors.baseColor,
+          onPrimary: AppColors.baseColor,
+          secondary: AppColors.baseColor,
+          onSecondary: AppColors.baseColor,
+          surface: AppColors.baseColor,
+          onSurface: AppColors.baseColor,
+          error: AppColors.baseColor,
+          onError: AppColors.baseColor,
+        ),
         useMaterial3: true,
       ),
       home: const OnboardingPage(),
