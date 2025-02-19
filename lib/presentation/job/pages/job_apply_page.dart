@@ -6,6 +6,7 @@ import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/custom_text_area.dart';
 import 'package:employme/core/components/title_section.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/presentation/job/pages/job_apply_status_page.dart';
 import 'package:flutter/material.dart';
 
 class JobApplyPage extends StatefulWidget {
@@ -122,9 +123,10 @@ class _JobApplyPageState extends State<JobApplyPage> {
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
           child: CustomButton.filled(
               onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return const JobApplyPage();
-                // }));
+                Navigator.pushAndRemoveUntil(context,
+                    MaterialPageRoute(builder: (context) {
+                  return const JobApplyStatusPage();
+                }), (route) => route.isFirst);
               },
               label: 'Apply Now')),
     );
