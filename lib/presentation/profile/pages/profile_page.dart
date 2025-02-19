@@ -1,6 +1,6 @@
+import 'package:employme/core/components/card_job.dart';
+import 'package:employme/core/components/title_section.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/experience_card.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -21,18 +21,12 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 24),
             Row(
               children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                ),
                 const Spacer(),
                 Text(
                   'Edit',
                   style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
@@ -88,14 +82,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                             '10',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             'Applied',
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: Colors.grey,
                             ),
                           ),
@@ -106,14 +100,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                             '20',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             'Reviewed',
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: Colors.grey,
                             ),
                           ),
@@ -124,14 +118,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                             '14',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
                             'Interview',
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 14,
                               color: Colors.grey,
                             ),
                           ),
@@ -142,82 +136,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(height: 40),
                   Column(
                     children: [
-                      //experience title and see all button
-                      Row(
-                        children: [
-                          const Text(
-                            'Experience',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'Poppins',
-                            ),
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              //print('KLIKKK');
-                            },
-                            child: const Text(
-                              'See All',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 13,
-                                fontFamily: 'Poppins',
-                              ),
-                              textAlign: TextAlign.right,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              softWrap: false,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      ExperienceCard(
-                        images: 'assets/images/logo1.png',
-                        experienceTitle: 'Mobile Developer',
-                        company: 'Spotify',
-                        location: 'Remote',
-                        date: 'Dec 20 - Feb 21',
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          const Text(
-                            'Education',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'Poppins',
-                            ),
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              //print('KLIKKK');
-                            },
-                            child: const Text(
-                              'See All',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 13,
-                                fontFamily: 'Poppins',
-                              ),
-                              textAlign: TextAlign.right,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              softWrap: false,
-                            ),
-                          ),
-                        ],
-                      ),
-                      // EducationCard
+                      TitleSection(title: 'Experience'),
+                      const SizedBox(height: 10),
+                      CardJob(
+                          image: 'assets/images/avatar.jpg',
+                          experienceTitle: 'Mobile Programmer',
+                          experiencecompany: 'Telkom Indonesia',
+                          experienceLocation: 'Bandung Barat',
+                          experienceDate: 'Dec 20 - Feb 21'),
+                      const SizedBox(height: 22),
+                      TitleSection(title: 'Education'),
+                      const SizedBox(height: 10),
                     ],
                   ),
-                  // Center(child: Text('PROFILE PAGE')),
                 ],
               ),
             ),

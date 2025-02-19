@@ -118,9 +118,45 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     spacing: 5,
                     children: [
-                      CardJob(),
-                      CardJob(),
-                      CardJob(),
+                      CardJob(
+                        image: 'assets/images/avatar.jpg',
+                        jobTitle: 'Mobile Programmer',
+                        jobCompany: 'Telkom Indonesia',
+                        jobSalary: '\$90.000/y',
+                        jobLocation: 'Jakarta Pusat',
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const JobDetailPage();
+                          }));
+                        },
+                      ),
+                      CardJob(
+                        image: 'assets/images/avatar.jpg',
+                        jobTitle: 'Web Programmer',
+                        jobCompany: 'Indosat Oreedo',
+                        jobSalary: '\$80.000/y',
+                        jobLocation: 'Bandung Barat',
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const JobDetailPage();
+                          }));
+                        },
+                      ),
+                      CardJob(
+                        image: 'assets/images/avatar.jpg',
+                        jobTitle: 'Deisgner',
+                        jobCompany: 'Blibli',
+                        jobSalary: '\$70.000/y',
+                        jobLocation: 'Bogor Timur',
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const JobDetailPage();
+                          }));
+                        },
+                      ),
                     ],
                   ),
                 ],

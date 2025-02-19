@@ -16,9 +16,15 @@ class JobApplyTracking extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              color: AppColors.white,
-              child: CardJob()),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            color: AppColors.white,
+            child: CardJob(
+                image: 'assets/images/avatar.jpg',
+                jobTitle: 'Mobile Programmer',
+                jobCompany: 'Telkom Indonesia',
+                jobSalary: '\$90.000/y',
+                jobLocation: 'Jakarta Pusat'),
+          ),
           const SizedBox(height: 22),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
