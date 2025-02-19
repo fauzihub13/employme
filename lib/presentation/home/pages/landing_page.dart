@@ -21,10 +21,10 @@ class _LandingPageState extends State<LandingPage> {
     'home': 'assets/icons/navbar/home.svg',
     'message': 'assets/icons/navbar/message.svg',
     'bookmark': 'assets/icons/navbar/bookmark.svg',
-    'category': 'assets/icons/navbar/category.svg',
+    'profile': 'assets/icons/navbar/profile.svg',
   };
 
-  final List<String> _menuKeys = ['home', 'message', 'bookmark', 'category'];
+  final List<String> _menuKeys = ['home', 'message', 'bookmark', 'profile'];
 
   List<BottomNavigationBarItem> get _menuItems => _menuKeys.map((key) {
         return BottomNavigationBarItem(
@@ -50,8 +50,8 @@ class _LandingPageState extends State<LandingPage> {
                 _menuIcons[key]!,
                 height: 24,
                 width: 24,
-                colorFilter:
-                    const ColorFilter.mode(AppColors.primaryBlue, BlendMode.srcIn),
+                colorFilter: const ColorFilter.mode(
+                    AppColors.primaryBlue, BlendMode.srcIn),
               ),
               const DotIndicator(),
             ],
@@ -72,6 +72,7 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.white,
         enableFeedback: false,
         elevation: 1,
         items: _menuItems,

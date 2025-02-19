@@ -2,8 +2,8 @@ import 'package:employme/core/components/banner_job.dart';
 import 'package:employme/core/components/card_job.dart';
 import 'package:employme/core/components/main_app_bar.dart';
 import 'package:employme/core/components/search_input.dart';
-import 'package:employme/core/constants/colors.dart';
 import 'package:employme/core/components/title_section.dart';
+import 'package:employme/core/constants/colors.dart';
 import 'package:employme/presentation/job/pages/job_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -51,9 +51,9 @@ class _HomePageState extends State<HomePage> {
                             color: AppColors.lightGrey,
                             borderRadius: BorderRadius.circular(12)),
                         child: Padding(
-                          padding: const EdgeInsets.all(14.0),
+                          padding: const EdgeInsets.all(20.0),
                           child: SvgPicture.asset(
-                            'assets/icons/filter.svg',
+                            'assets/icons/search.svg',
                             colorFilter: const ColorFilter.mode(
                                 AppColors.darkGrey, BlendMode.srcIn),
                           ),

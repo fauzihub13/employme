@@ -8,6 +8,7 @@ class SearchInput extends StatelessWidget {
   final String hintText;
   final BorderRadius? borderRadius;
   final IconButton? suffixIcon;
+  final IconButton? prefixIcon;
   final FocusNode? focusNode;
 
   const SearchInput(
@@ -18,6 +19,7 @@ class SearchInput extends StatelessWidget {
       this.hintText = 'Cari di sini',
       this.borderRadius,
       this.suffixIcon,
+      this.prefixIcon,
       this.focusNode});
 
   @override
@@ -28,6 +30,8 @@ class SearchInput extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.circular(16.0),
       ),
       child: TextFormField(
+        cursorColor: AppColors.black,
+        style: TextStyle(color: AppColors.black),
         focusNode: focusNode,
         onTap: onTap,
         readOnly: onTap != null,
@@ -36,10 +40,7 @@ class SearchInput extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.darkGrey, fontSize: 18),
-          prefixIcon: const Icon(
-            Icons.search,
-            color: AppColors.darkGrey,
-          ),
+          prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           contentPadding: const EdgeInsets.all(16.0),
           border: OutlineInputBorder(
