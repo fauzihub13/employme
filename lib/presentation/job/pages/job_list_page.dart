@@ -1,5 +1,7 @@
 import 'package:employme/core/components/card_job.dart';
 import 'package:employme/core/components/custom_appbar.dart';
+import 'package:employme/core/components/custom_badge.dart';
+import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/search_input.dart';
 import 'package:employme/core/constants/colors.dart';
 import 'package:employme/presentation/job/pages/job_detail_page.dart';
@@ -22,6 +24,14 @@ class _JobListPageState extends State<JobListPage> {
   RangeValues rangeValues = const RangeValues(10000, 100000);
   double _lowerValue = 30000;
   double _upperValue = 90000;
+
+  final List<Map<String, dynamic>> badges = [
+    {'text': 'Full time', 'isSelected': false},
+    {'text': 'Senior', 'isSelected': false},
+    {'text': 'Junior', 'isSelected': false},
+    {'text': 'Entry Level', 'isSelected': false},
+    {'text': 'Internship', 'isSelected': false},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +109,7 @@ class _JobListPageState extends State<JobListPage> {
               controller: sheetController,
               key: _sheet,
               initialChildSize: 0.3,
-              maxChildSize: 0.9,
+              maxChildSize: 0.5,
               minChildSize: 0.1,
               expand: true,
               snap: true,
@@ -108,7 +118,7 @@ class _JobListPageState extends State<JobListPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   clipBehavior: Clip.hardEdge,
                   decoration: const BoxDecoration(
-                    color: AppColors.baseColor,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),
                       topRight: Radius.circular(25),
@@ -145,12 +155,12 @@ class _JobListPageState extends State<JobListPage> {
                           'Salary Range',
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: AppColors.darkGrey),
                         ),
                         const SizedBox(
-                          height: 6,
+                          height: 4,
                         ),
                         Text(
                           'The average listing price is \$84,000',
@@ -196,13 +206,50 @@ class _JobListPageState extends State<JobListPage> {
                                 _lowerValue = values.start;
                                 _upperValue = values.end;
                               });
-                            })
-
-                        // Container(
-                        //   color: AppColors.blue2,
-                        //   width: 100,
-                        //   height: 100,
-                        // ),
+                            }),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          'Job Types',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.darkGrey),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              spacing: 10,
+                              children: List.generate(badges.length, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      badges[index]['isSelected'] =
+                                          !badges[index]['isSelected'];
+                                    });
+                                  },
+                                  child: CustomBadge(
+                                    text: badges[index]['text'],
+                                    isSelected: badges[index]['isSelected'],
+                                  ),
+                                );
+                              }),
+                            )),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        CustomButton.filled(
+                            onPressed: () {
+                              setState(() {
+                                isClicked = !isClicked;
+                              });
+                            },
+                            label: 'Apply')
                       ])
                     ],
                   ),
