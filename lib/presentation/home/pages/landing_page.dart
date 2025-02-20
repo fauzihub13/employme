@@ -1,8 +1,8 @@
 import 'package:employme/core/components/dot_indicator.dart';
 import 'package:employme/core/constants/colors.dart';
-import 'package:employme/presentation/bookmark/pages/bookmark_page.dart';
+import 'package:employme/presentation/chat/pages/chat_list_page.dart';
 import 'package:employme/presentation/home/pages/home_page.dart';
-import 'package:employme/presentation/message/pages/message_page.dart';
+import 'package:employme/presentation/job/pages/job_saved_page.dart';
 import 'package:employme/presentation/profile/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -62,8 +62,8 @@ class _LandingPageState extends State<LandingPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const MessagePage(),
-    const BookMarkPage(),
+    const ChatListPage(),
+    const JobSavedPage(),
     const ProfilePage(),
   ];
 

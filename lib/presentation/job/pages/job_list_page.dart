@@ -33,6 +33,79 @@ class _JobListPageState extends State<JobListPage> {
     {'text': 'Internship', 'isSelected': false},
   ];
 
+  List<Map<String, dynamic>> jobList = [
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Web Programmer',
+      'jobCompany': 'Telkom Indonesia',
+      'jobSalary': '\$90.000/y',
+      'jobLocation': 'Jakarta Barat',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Mobile Developer',
+      'jobCompany': 'Gojek',
+      'jobSalary': '\$85.000/y',
+      'jobLocation': 'Jakarta Selatan',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Data Scientist',
+      'jobCompany': 'Tokopedia',
+      'jobSalary': '\$120.000/y',
+      'jobLocation': 'Jakarta Pusat',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'UI/UX Designer',
+      'jobCompany': 'Bukalapak',
+      'jobSalary': '\$75.000/y',
+      'jobLocation': 'Bandung',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Software Engineer',
+      'jobCompany': 'Shopee',
+      'jobSalary': '\$110.000/y',
+      'jobLocation': 'Jakarta Utara',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Backend Developer',
+      'jobCompany': 'Traveloka',
+      'jobSalary': '\$95.000/y',
+      'jobLocation': 'Jakarta Timur',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Frontend Developer',
+      'jobCompany': 'Blibli',
+      'jobSalary': '\$80.000/y',
+      'jobLocation': 'Tangerang',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Cyber Security Analyst',
+      'jobCompany': 'Bank Mandiri',
+      'jobSalary': '\$130.000/y',
+      'jobLocation': 'Jakarta Pusat',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'Machine Learning Engineer',
+      'jobCompany': 'Grab',
+      'jobSalary': '\$140.000/y',
+      'jobLocation': 'Jakarta Selatan',
+    },
+    {
+      'image': 'assets/images/avatar.jpg',
+      'jobTitle': 'DevOps Engineer',
+      'jobCompany': 'Tokopedia',
+      'jobSalary': '\$100.000/y',
+      'jobLocation': 'Jakarta Barat',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,16 +154,17 @@ class _JobListPageState extends State<JobListPage> {
               ),
               Expanded(
                 child: ListView.builder(
-                    itemCount: 24,
+                    itemCount: jobList.length,
                     itemBuilder: (context, index) {
+                      final job = jobList[index];
                       return Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: CardJob(
-                          image: 'assets/images/avatar.jpg',
-                          jobTitle: 'Fullstack Developer',
-                          jobCompany: 'Telkom Indonesia',
-                          jobSalary: '\$100.000/y',
-                          jobLocation: 'Jakarta Utara',
+                          image: job['image'],
+                          jobTitle: job['jobTitle'],
+                          jobCompany: job['jobCompany'],
+                          jobSalary: job['jobSalary'],
+                          jobLocation: job['jobLocation'],
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {

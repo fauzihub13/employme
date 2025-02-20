@@ -4,7 +4,7 @@ import '../../core/constants/colors.dart';
 import 'login_page.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       };
 
       // Here you would call your API
-      print('Sending to API: $userData');
+      // print('Sending to API: $userData');
 
       // Navigate to success or verification page
       ScaffoldMessenger.of(context).showSnackBar(

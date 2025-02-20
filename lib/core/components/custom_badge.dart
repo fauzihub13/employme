@@ -11,6 +11,9 @@ class CustomBadge extends StatefulWidget {
   final Color? unselectedColor;
   final double? opacity;
   final bool? isSelected;
+  final double? verticalPadding;
+  final double? horizontalPadding;
+  final double? fontSize;
 
   const CustomBadge({
     super.key,
@@ -23,6 +26,9 @@ class CustomBadge extends StatefulWidget {
     this.unselectedColor = AppColors.baseColor,
     this.opacity = 0.2,
     this.isSelected = false,
+    this.verticalPadding = 4,
+    this.horizontalPadding = 16,
+    this.fontSize = 14,
   });
 
   @override
@@ -41,13 +47,16 @@ class _CustomBadgeState extends State<CustomBadge> {
         borderRadius: BorderRadius.circular(widget.borderRadius!),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+        padding: EdgeInsets.symmetric(
+            vertical: widget.verticalPadding!,
+            horizontal: widget.horizontalPadding!),
         child: Text(
           widget.text,
           style: TextStyle(
               color: widget.isSelected!
                   ? widget.unselectedColor!
-                  : widget.textColor!),
+                  : widget.textColor!,
+              fontSize: widget.fontSize!),
         ),
       ),
     );
