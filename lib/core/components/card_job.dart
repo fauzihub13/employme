@@ -1,7 +1,7 @@
 import 'package:employme/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-class CardJob extends StatelessWidget {
+class CardJob extends StatefulWidget {
   final double? borderRadius;
   final String image;
   final String? jobTitle;
@@ -32,14 +32,19 @@ class CardJob extends StatelessWidget {
   });
 
   @override
+  State<CardJob> createState() => _CardJobState();
+}
+
+class _CardJobState extends State<CardJob> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ?? () {},
+      onTap: widget.onTap ?? () {},
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(borderRadius!),
+          borderRadius: BorderRadius.circular(widget.borderRadius!),
         ),
         child: Row(
           spacing: 16,
@@ -47,12 +52,27 @@ class CardJob extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: Image.asset(
-                image,
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
+              child: widget.image.startsWith('http')
+                  ? Image.network(
+                      widget.image,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'assets/images/avatar.jpg',
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    )
+                  : Image.asset(
+                      widget.image,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    ),
             ),
             Expanded(
               child: Column(
@@ -66,7 +86,9 @@ class CardJob extends StatelessWidget {
                       Flexible(
                         flex: 2,
                         child: Text(
-                          jobTitle!.isNotEmpty ? jobTitle! : experienceTitle!,
+                          widget.jobTitle!.isNotEmpty
+                              ? widget.jobTitle!
+                              : widget.experienceTitle!,
                           maxLines: 1,
                           style: TextStyle(
                               color: AppColors.black,
@@ -77,9 +99,9 @@ class CardJob extends StatelessWidget {
                       Flexible(
                         flex: 1,
                         child: Text(
-                          jobSalary!.isNotEmpty
-                              ? jobSalary!
-                              : experienceLocation!,
+                          widget.jobSalary!.isNotEmpty
+                              ? ' ${widget.jobSalary!}'
+                              : widget.experienceLocation!,
                           maxLines: 1,
                           textAlign: TextAlign.end,
                           style: TextStyle(
@@ -97,9 +119,9 @@ class CardJob extends StatelessWidget {
                       Flexible(
                         flex: 1,
                         child: Text(
-                          jobCompany!.isNotEmpty
-                              ? jobCompany!
-                              : experiencecompany!,
+                          widget.jobCompany!.isNotEmpty
+                              ? widget.jobCompany!
+                              : widget.experiencecompany!,
                           maxLines: 1,
                           style: TextStyle(
                             color: AppColors.darkGrey,
@@ -111,9 +133,9 @@ class CardJob extends StatelessWidget {
                       Flexible(
                         flex: 1,
                         child: Text(
-                          jobLocation!.isNotEmpty
-                              ? jobLocation!
-                              : experienceDate!,
+                          widget.jobLocation!.isNotEmpty
+                              ? widget.jobLocation!
+                              : widget.experienceDate!,
                           maxLines: 1,
                           textAlign: TextAlign.end,
                           style: TextStyle(

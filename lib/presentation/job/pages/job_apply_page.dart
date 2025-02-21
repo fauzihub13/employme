@@ -6,11 +6,13 @@ import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/custom_text_area.dart';
 import 'package:employme/core/components/title_section.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:employme/presentation/job/pages/job_apply_status_page.dart';
 import 'package:flutter/material.dart';
 
 class JobApplyPage extends StatefulWidget {
-  const JobApplyPage({super.key});
+  final Job job;
+  const JobApplyPage({super.key, required this.job});
 
   @override
   State<JobApplyPage> createState() => _JobApplyPageState();
@@ -22,20 +24,22 @@ class _JobApplyPageState extends State<JobApplyPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Job job = widget.job;
     return Scaffold(
       appBar: CustomAppbar(title: 'Apply', canBack: true),
       body: SafeArea(
         child: Column(
           children: [
             Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                color: AppColors.white,
-                child: CardJob(
-                  image: 'assets/images/avatar.jpg',
-                  jobTitle: 'Mobile Programmer',
-                  jobCompany: 'Telkom Indonesia',
-                  jobSalary: '\$90.000/y',
-                  jobLocation: 'Jakarta Pusat'),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              color: AppColors.white,
+              child: CardJob(
+                  image: job.company!.logoPath!,
+                  jobTitle: job.title!,
+                  jobCompany: job.company!.name!,
+                  jobSalary:
+                      '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}/y',
+                  jobLocation: job.company!.location!),
             ),
             const SizedBox(height: 22),
             Padding(
@@ -50,7 +54,7 @@ class _JobApplyPageState extends State<JobApplyPage> {
                       Flexible(
                         flex: 1,
                         child: CardProfileOption(
-                            avatar: 'assets/images/avatar.jpg',
+                            avatar: 'assets/images/profile.jpeg',
                             name: 'John Dae',
                             title: 'Programmer',
                             isSelected: profileSelected == 0,
@@ -63,7 +67,7 @@ class _JobApplyPageState extends State<JobApplyPage> {
                       Flexible(
                         flex: 1,
                         child: CardProfileOption(
-                            avatar: 'assets/images/avatar.jpg',
+                            avatar: 'assets/images/profile.jpeg',
                             name: 'John Dae',
                             title: 'Designer',
                             isSelected: profileSelected == 1,
@@ -131,7 +135,9 @@ class _JobApplyPageState extends State<JobApplyPage> {
               onPressed: () {
                 Navigator.pushAndRemoveUntil(context,
                     MaterialPageRoute(builder: (context) {
-                  return const JobApplyStatusPage();
+                  return JobApplyStatusPage(
+                    job: job,
+                  );
                 }), (route) => route.isFirst);
               },
               label: 'Apply Now')),

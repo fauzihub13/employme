@@ -2,11 +2,13 @@ import 'package:employme/core/components/card_job.dart';
 import 'package:employme/core/components/custom_appbar.dart';
 import 'package:employme/core/components/title_section.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:employme/presentation/job/widgets/card_job_tracking.dart';
 import 'package:flutter/material.dart';
 
 class JobApplyTracking extends StatelessWidget {
-  const JobApplyTracking({super.key});
+  final Job? job;
+  const JobApplyTracking({super.key, this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +21,17 @@ class JobApplyTracking extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             color: AppColors.white,
             child: CardJob(
-                image: 'assets/images/avatar.jpg',
-                jobTitle: 'Mobile Programmer',
-                jobCompany: 'Telkom Indonesia',
-                jobSalary: '\$90.000/y',
-                jobLocation: 'Jakarta Pusat'),
+                image: job != null
+                    ? job!.company!.logoPath!
+                    : 'assets/images/avatar.jpg',
+                jobTitle: job != null ? job!.title! : 'Mobile Programmer',
+                jobCompany:
+                    job != null ? job!.company!.location! : 'Telkom Indonesia',
+                jobSalary: job != null
+                    ? '\$${job!.salary!.max!.substring(0, job!.salary!.max!.length - 3)}'
+                    : '\$90.000/y',
+                jobLocation:
+                    job != null ? job!.company!.location! : 'Jakarta Pusat'),
           ),
           const SizedBox(height: 22),
           Padding(

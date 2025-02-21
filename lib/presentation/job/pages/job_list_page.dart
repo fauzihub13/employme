@@ -4,8 +4,12 @@ import 'package:employme/core/components/custom_badge.dart';
 import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/search_input.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
+import 'package:employme/presentation/job/bloc/bloc/job_bloc.dart';
+import 'package:employme/presentation/job/bloc/bloc/job_state.dart';
 import 'package:employme/presentation/job/pages/job_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class JobListPage extends StatefulWidget {
@@ -33,78 +37,23 @@ class _JobListPageState extends State<JobListPage> {
     {'text': 'Internship', 'isSelected': false},
   ];
 
-  List<Map<String, dynamic>> jobList = [
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Web Programmer',
-      'jobCompany': 'Telkom Indonesia',
-      'jobSalary': '\$90.000/y',
-      'jobLocation': 'Jakarta Barat',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Mobile Developer',
-      'jobCompany': 'Gojek',
-      'jobSalary': '\$85.000/y',
-      'jobLocation': 'Jakarta Selatan',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Data Scientist',
-      'jobCompany': 'Tokopedia',
-      'jobSalary': '\$120.000/y',
-      'jobLocation': 'Jakarta Pusat',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'UI/UX Designer',
-      'jobCompany': 'Bukalapak',
-      'jobSalary': '\$75.000/y',
-      'jobLocation': 'Bandung',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Software Engineer',
-      'jobCompany': 'Shopee',
-      'jobSalary': '\$110.000/y',
-      'jobLocation': 'Jakarta Utara',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Backend Developer',
-      'jobCompany': 'Traveloka',
-      'jobSalary': '\$95.000/y',
-      'jobLocation': 'Jakarta Timur',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Frontend Developer',
-      'jobCompany': 'Blibli',
-      'jobSalary': '\$80.000/y',
-      'jobLocation': 'Tangerang',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Cyber Security Analyst',
-      'jobCompany': 'Bank Mandiri',
-      'jobSalary': '\$130.000/y',
-      'jobLocation': 'Jakarta Pusat',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'Machine Learning Engineer',
-      'jobCompany': 'Grab',
-      'jobSalary': '\$140.000/y',
-      'jobLocation': 'Jakarta Selatan',
-    },
-    {
-      'image': 'assets/images/avatar.jpg',
-      'jobTitle': 'DevOps Engineer',
-      'jobCompany': 'Tokopedia',
-      'jobSalary': '\$100.000/y',
-      'jobLocation': 'Jakarta Barat',
-    },
-  ];
+  final TextEditingController searchController = TextEditingController();
+  List<Job> searchResults = [];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<JobBloc>().add(GetJobList());
+  }
+
+  void _onSearchChanged(String value) {
+    setState(() {
+      searchResults = searchResults
+          .where((e) =>
+              e.company!.name!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +73,9 @@ class _JobListPageState extends State<JobListPage> {
                 children: [
                   Expanded(
                     child: SearchInput(
-                      controller: TextEditingController(),
+                      controller: searchController,
                       hintText: 'Search a job or position',
+                      onChanged: _onSearchChanged,
                     ),
                   ),
                   GestureDetector(
@@ -153,27 +103,61 @@ class _JobListPageState extends State<JobListPage> {
                 ],
               ),
               Expanded(
-                child: ListView.builder(
-                    itemCount: jobList.length,
-                    itemBuilder: (context, index) {
-                      final job = jobList[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: CardJob(
-                          image: job['image'],
-                          jobTitle: job['jobTitle'],
-                          jobCompany: job['jobCompany'],
-                          jobSalary: job['jobSalary'],
-                          jobLocation: job['jobLocation'],
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return JobDetailPage();
-                            }));
-                          },
+                child: BlocConsumer<JobBloc, JobState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is JobLoading) {
+                      return Center(
+                          child: CircularProgressIndicator(
+                              color: AppColors.primaryBlue));
+                    } else if (state is JobLoaded) {
+                      searchResults = state.jobList;
+                      final filteredJobs = searchController.text.isEmpty
+                          ? searchResults
+                          : searchResults
+                              .where((job) => job.title!.toLowerCase().contains(
+                                  searchController.text.toLowerCase()))
+                              .toList();
+
+                      return filteredJobs.isEmpty
+                          ? const Center(child: Text('No results found.'))
+                          : ListView.builder(
+                              itemCount: filteredJobs.length,
+                              itemBuilder: (context, index) {
+                                final job = filteredJobs[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: CardJob(
+                                    image: job.company!.logoPath!,
+                                    jobTitle: job.title!,
+                                    jobCompany: job.company!.name!,
+                                    jobSalary: job.salary!.max!.substring(
+                                        0, job.salary!.max!.length - 3),
+                                    jobLocation: job.company!.location!,
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return JobDetailPage(
+                                          job: job,
+                                        );
+                                      }));
+                                    },
+                                  ),
+                                );
+                              });
+                    } else if (state is JobError) {
+                      return Center(
+                        child: Text(
+                          'Failed to load jobs.',
+                          style: TextStyle(color: Colors.red),
                         ),
                       );
-                    }),
+                    }
+                    return Center(
+                        child: Text(
+                            'Something went wrong. Please try again. ${state.toString()}'));
+                  },
+                ),
               )
             ],
           ),

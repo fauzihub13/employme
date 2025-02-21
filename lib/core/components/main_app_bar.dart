@@ -38,8 +38,8 @@ class MainAppBar extends StatelessWidget {
             CircleAvatar(
               backgroundColor: AppColors.primaryBlue,
               radius: 30.0,
-              backgroundImage:
-                  const AssetImage('assets/images/avatar.jpg') as ImageProvider,
+              backgroundImage: const AssetImage('assets/images/profile.jpeg')
+                  as ImageProvider,
             ),
           ],
         ),

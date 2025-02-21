@@ -304,21 +304,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     spacing: 24,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       _socialLoginButton(
+                      _socialLoginButton(
                         onPressed: () {
-                          // TODO: Implement Google login
+                          
                         },
                         iconPath: 'assets/icons/google_ic.png',
                       ),
                       _socialLoginButton(
                         onPressed: () {
-                          // TODO: Implement Facebook login
                         },
                         iconPath: 'assets/images/logo1.png',
                       ),
                       _socialLoginButton(
                         onPressed: () {
-                          // TODO: Implement Apple login
                         },
                         iconPath: 'assets/icons/apple_ic.png',
                       ),
@@ -412,7 +410,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
- Widget _socialLoginButton({
+  Widget _socialLoginButton({
     required VoidCallback onPressed,
     required String iconPath,
   }) {

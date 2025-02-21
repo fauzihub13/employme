@@ -1,9 +1,12 @@
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/core/extensions/string_ext.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BannerJob extends StatefulWidget {
-  const BannerJob({super.key});
+  final Job job;
+  const BannerJob({super.key, required this.job});
 
   @override
   State<BannerJob> createState() => _BannerJobState();
@@ -14,6 +17,7 @@ class _BannerJobState extends State<BannerJob> {
 
   @override
   Widget build(BuildContext context) {
+    final job = widget.job;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -27,6 +31,7 @@ class _BannerJobState extends State<BannerJob> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 16,
           children: [
             Row(
@@ -36,19 +41,35 @@ class _BannerJobState extends State<BannerJob> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(
-                    'assets/images/avatar.jpg',
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                  ),
+                  child: 
+                  job.company!.logoPath!.startsWith('http')
+                      ? Image.network(
+                          job.company!.logoPath!,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/avatar.jpg',
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        )
+                      : Image.asset(
+                          job.company!.logoPath!,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 Expanded(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Junior Mobile ',
+                      job.title!,
                       maxLines: 1,
                       style: TextStyle(
                           color: Colors.white,
@@ -56,7 +77,7 @@ class _BannerJobState extends State<BannerJob> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Telkom Indonesia ',
+                      job.company!.name!,
                       maxLines: 1,
                       style: TextStyle(
                           color: Colors.white,
@@ -82,82 +103,32 @@ class _BannerJobState extends State<BannerJob> {
                 )
               ],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                spacing: 12,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
-                      child: Text(
-                        'Junior',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
-                      child: Text(
-                        'Senior',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
-                      child: Text(
-                        'Internship',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
-                      child: Text(
-                        'Internship',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                child: Text(
+                  job.jobType!.capitalize(),
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '90k/year',
+                  '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}/y',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
                 ),
                 Text(
-                  'Texas, USA',
+                  job.company!.location!,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,

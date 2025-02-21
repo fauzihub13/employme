@@ -1,14 +1,19 @@
+import 'dart:math';
+
 import 'package:employme/core/components/banner_job.dart';
 import 'package:employme/core/components/card_job.dart';
 import 'package:employme/core/components/main_app_bar.dart';
 import 'package:employme/core/components/search_input.dart';
 import 'package:employme/core/components/title_section.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
+import 'package:employme/presentation/job/bloc/bloc/job_bloc.dart';
+import 'package:employme/presentation/job/bloc/bloc/job_state.dart';
 import 'package:employme/presentation/job/pages/job_detail_page.dart';
 import 'package:employme/presentation/job/pages/job_list_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,11 +24,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final PageController pageController = PageController(initialPage: 0);
-  final _bannerJobList = [
-    BannerJob(),
-    BannerJob(),
-    BannerJob(),
-  ];
+
+  List<Job> jobs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<JobBloc>().add(GetJobList());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,46 +82,58 @@ class _HomePageState extends State<HomePage> {
                     height: 34,
                   ),
                   TitleSection(
-                      title: 'Featured Jobs',
-                      onPressed: () {
-                        // print('KLIKKK');
-                      }),
+                    title: 'Featured Jobs',
+                    canPress: false,
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
-                  SizedBox(
-                    height: 176,
-                    width: double.infinity,
-                    child: PageView.builder(
-                      controller: pageController,
-                      itemCount: _bannerJobList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: GestureDetector(
-                              onTap: () {
-                                // print('HOOOOOOO');
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return JobDetailPage();
-                                }));
-                              },
-                              child: _bannerJobList[index]),
+                  BlocConsumer<JobBloc, JobState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is JobLoading) {
+                        return Container(
+                          height: 176,
+                          width: 200,
+                          color: AppColors.baseColor,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primaryBlue,
+                            ),
+                          ),
                         );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: SmoothPageIndicator(
-                      controller: pageController,
-                      count: _bannerJobList.length,
-                      effect: const WormEffect(
-                          dotHeight: 6,
-                          dotWidth: 24,
-                          activeDotColor: AppColors.primaryBlue,
-                          dotColor: AppColors.disabled),
-                    ),
+                      } else if (state is JobLoaded) {
+                        jobs = state.jobList;
+                        return SizedBox(
+                          height: 176,
+                          width: double.infinity,
+                          child: PageView.builder(
+                            controller: pageController,
+                            itemCount: min(3, jobs.length).toInt(),
+                            itemBuilder: (context, index) {
+                              final job = jobs[jobs.length.toInt() -
+                                  min(3, jobs.length).toInt() +
+                                  index];
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return JobDetailPage(job: job);
+                                      }));
+                                    },
+                                    child: BannerJob(
+                                      job: job,
+                                    )),
+                              );
+                            },
+                          ),
+                        );
+                      }
+
+                      return Text('as');
+                    },
                   ),
                   const SizedBox(
                     height: 34,
@@ -121,52 +141,61 @@ class _HomePageState extends State<HomePage> {
                   TitleSection(
                       title: 'Popular Jobs',
                       onPressed: () {
-                        // print('KLIKKK');
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const JobListPage();
+                        }));
                       }),
                   const SizedBox(height: 10),
-                  Column(
-                    spacing: 8,
-                    children: [
-                      CardJob(
-                        image: 'assets/images/avatar.jpg',
-                        jobTitle: 'Mobile Programmer',
-                        jobCompany: 'Telkom Indonesia',
-                        jobSalary: '\$90.000/y',
-                        jobLocation: 'Jakarta Pusat',
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const JobDetailPage();
-                          }));
-                        },
-                      ),
-                      CardJob(
-                        image: 'assets/images/avatar.jpg',
-                        jobTitle: 'Web Programmer',
-                        jobCompany: 'Indosat Oreedo',
-                        jobSalary: '\$80.000/y',
-                        jobLocation: 'Bandung Barat',
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const JobDetailPage();
-                          }));
-                        },
-                      ),
-                      CardJob(
-                        image: 'assets/images/avatar.jpg',
-                        jobTitle: 'Deisgner',
-                        jobCompany: 'Blibli',
-                        jobSalary: '\$70.000/y',
-                        jobLocation: 'Bogor Timur',
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const JobDetailPage();
-                          }));
-                        },
-                      ),
-                    ],
+                  BlocConsumer<JobBloc, JobState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is JobLoading) {
+                        return Center(
+                            widthFactor: 100,
+                            child: CircularProgressIndicator(
+                                color: AppColors.primaryBlue));
+                      } else if (state is JobLoaded) {
+                        jobs = state.jobList;
+                        return ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: EdgeInsets.all(0),
+                            itemCount: min(3, jobs.length),
+                            itemBuilder: (context, index) {
+                              final job = jobs[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: CardJob(
+                                  image: job.company!.logoPath!,
+                                  jobTitle: job.title!,
+                                  jobCompany: job.company!.name!,
+                                  jobSalary:
+                                      '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}',
+                                  jobLocation: job.company!.location!,
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return JobDetailPage(
+                                        job: job,
+                                      );
+                                    }));
+                                  },
+                                ),
+                              );
+                            });
+                      } else if (state is JobError) {
+                        return Center(
+                          child: Text(
+                            'Failed to load jobs.',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        );
+                      }
+                      return Center(
+                          child: Text(
+                              'Something went wrong. Please try again. ${state.toString()}'));
+                    },
                   ),
                 ],
               ),

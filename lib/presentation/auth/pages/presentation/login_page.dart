@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     BlocConsumer<LoginBloc, LoginState>(
                       listener: (context, state) {
                         if (state is LoginSuccess) {
-                          // TODO: Navigate to home page
+                          // Navigate to home page
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
@@ -337,19 +337,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         _socialLoginButton(
                           onPressed: () {
-                            // TODO: Implement Google login
+                            
                           },
                           iconPath: 'assets/icons/google_ic.png',
                         ),
-                        // _socialLoginButton(
-                        //   onPressed: () {
-                        //     // TODO: Implement Facebook login
-                        //   },
-                        //   iconPath: 'assets/icons/facebook.png',
-                        // ),
+                        
                         _socialLoginButton(
                           onPressed: () {
-                            // TODO: Implement Apple login
+                           
                           },
                           iconPath: 'assets/icons/apple_ic.png',
                         ),

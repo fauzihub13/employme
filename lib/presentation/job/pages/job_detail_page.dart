@@ -1,12 +1,15 @@
 import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/custom_header_clipper.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/core/extensions/string_ext.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:employme/presentation/job/pages/job_apply_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class JobDetailPage extends StatefulWidget {
-  const JobDetailPage({super.key});
+  final Job job;
+  const JobDetailPage({super.key, required this.job});
 
   @override
   State<JobDetailPage> createState() => _JobDetailPageState();
@@ -28,6 +31,8 @@ class _JobDetailPageState extends State<JobDetailPage>
 
   @override
   Widget build(BuildContext context) {
+    Job job = widget.job;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -110,8 +115,8 @@ class _JobDetailPageState extends State<JobDetailPage>
                       const SizedBox(height: 10),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: Image.asset(
-                          'assets/images/avatar.jpg',
+                        child: Image.network(
+                          job.company!.logoPath!,
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
@@ -119,7 +124,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'Product Designer',
+                        job.title!.capitalize(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.white,
@@ -128,7 +133,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                         ),
                       ),
                       Text(
-                        'Google Inc.',
+                        job.company!.name!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.lightGrey,
@@ -141,7 +146,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                         alignment: WrapAlignment.center,
                         spacing: 14,
                         runSpacing: 10,
-                        children: List.generate(6, (index) {
+                        children: List.generate(1, (index) {
                           return Container(
                             decoration: BoxDecoration(
                               color: Colors.white.withValues(alpha: 0.2),
@@ -150,7 +155,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                             padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 16),
                             child: Text(
-                              'Junior',
+                              job.jobType!.capitalize(),
                               style: TextStyle(color: Colors.white),
                             ),
                           );
@@ -161,7 +166,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '\$160,000/year',
+                            '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -169,7 +174,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                             ),
                           ),
                           Text(
-                            'California, USA',
+                            job.company!.location!,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -208,34 +213,34 @@ class _JobDetailPageState extends State<JobDetailPage>
                             text: 'Requirement',
                           ),
                           Tab(
-                            text: 'About',
+                            text: 'Responsibilities',
                           ),
                           Tab(
-                            text: 'Reviews',
+                            text: 'Benefits',
                           ),
                         ]),
                     Expanded(
                       child: TabBarView(controller: tabController, children: [
                         Text(
-                          '\u2022 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                          job.description!,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               color: AppColors.darkGrey, fontSize: 16),
                         ),
                         Text(
-                          'Hi 2',
+                          job.requirements!,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               color: AppColors.darkGrey, fontSize: 16),
                         ),
                         Text(
-                          'Hi 3',
+                          job.responsibilities!,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               color: AppColors.darkGrey, fontSize: 16),
                         ),
                         Text(
-                          'Hi 4',
+                          job.benefits!,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               color: AppColors.darkGrey, fontSize: 16),
@@ -254,7 +259,9 @@ class _JobDetailPageState extends State<JobDetailPage>
           child: CustomButton.filled(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const JobApplyPage();
+                  return JobApplyPage(
+                    job: job,
+                  );
                 }));
               },
               label: 'Apply Now')),

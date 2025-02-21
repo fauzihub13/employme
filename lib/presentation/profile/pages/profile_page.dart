@@ -1,14 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/datasource/auth_local_datasource.dart';
-import '../../auth/bloc/logout/logout_bloc.dart';
 import '/core/components/card_job.dart';
 import '/core/components/title_section.dart';
-import '../../auth/pages/presentation/login_page.dart';
 import '/presentation/job/pages/job_applied_history_page.dart';
-import 'package:flutter/material.dart';
-
 import '../../../core/constants/colors.dart';
+import '../../auth/bloc/logout/logout_bloc.dart';
+import '../../auth/pages/presentation/login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,10 +16,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final _authLocalDatasource = AuthLocalDatasource();
+  // final _authLocalDatasource = AuthLocalDatasource();
   List<Map<String, dynamic>> jobExperiences = [
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_1.jpeg',
       'experienceTitle': 'Mobile Programmer',
       'experienceCompany': 'Telkom Indonesia',
       'experienceLocation': 'Bandung Barat',
@@ -31,21 +29,21 @@ class _ProfilePageState extends State<ProfilePage> {
 
   List<Map<String, dynamic>> educationList = [
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/ui.png',
       'experienceTitle': 'Bachelor of Computer Science',
       'experienceCompany': 'Universitas Indonesia',
       'experienceLocation': 'Depok',
       'experienceDate': '2015 - 2019',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/ugm.jpg',
       'experienceTitle': 'Master of Information Technology',
       'experienceCompany': 'Bandung Institute of Technology',
       'experienceLocation': 'Bandung',
       'experienceDate': '2020 - 2022',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/itb.png',
       'experienceTitle': 'Diploma in Software Engineering',
       'experienceCompany': 'Politeknik Elektronika Negeri Surabaya',
       'experienceLocation': 'Surabaya',
@@ -68,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     const Spacer(),
                     Text(
-                      'Edit',
+                      '',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -85,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: Image.asset(
-                          'assets/images/avatar.jpg',
+                          'assets/images/profile.jpeg',
                           width: 104,
                           height: 104,
                           fit: BoxFit.cover,

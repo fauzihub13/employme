@@ -19,7 +19,7 @@ class AuthRemoteDatasource {
         'password': password,
       }),
     );
-    print(response.body);
+    // print(response.body);
 
     if (response.statusCode == 200) {
       return Right(AuthResponseModel.fromJson(response.body));
@@ -38,7 +38,7 @@ class AuthRemoteDatasource {
         'Content-Type': 'application/json',
       },
     );
-    print(response.body);
+    // print(response.body);
 
     if (response.statusCode == 200) {
       return Right(null);

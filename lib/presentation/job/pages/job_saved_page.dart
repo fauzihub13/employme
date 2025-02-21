@@ -2,7 +2,6 @@ import 'package:employme/core/components/card_job_status.dart';
 import 'package:employme/core/components/custom_appbar.dart';
 import 'package:employme/core/components/custom_badge.dart';
 import 'package:employme/core/constants/colors.dart';
-import 'package:employme/presentation/job/pages/job_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class JobSavedPage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
 
   List<Map<String, dynamic>> jobList = [
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_1.jpeg',
       'jobTitle': 'Web Programmer',
       'jobCompany': 'Telkom Indonesia',
       'jobSalary': '\$90.000/y',
@@ -34,7 +33,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Full-time',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_2.jpeg',
       'jobTitle': 'Mobile Developer',
       'jobCompany': 'Gojek',
       'jobSalary': '\$85.000/y',
@@ -43,7 +42,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Junior',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_3.jpeg',
       'jobTitle': 'Data Scientist',
       'jobCompany': 'Tokopedia',
       'jobSalary': '\$120.000/y',
@@ -52,7 +51,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Senior',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_4.jpeg',
       'jobTitle': 'UI/UX Designer',
       'jobCompany': 'Bukalapak',
       'jobSalary': '\$75.000/y',
@@ -61,7 +60,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Internship',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_5.jpeg',
       'jobTitle': 'Software Engineer',
       'jobCompany': 'Shopee',
       'jobSalary': '\$110.000/y',
@@ -70,7 +69,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Full-time',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_6.jpeg',
       'jobTitle': 'Backend Developer',
       'jobCompany': 'Traveloka',
       'jobSalary': '\$95.000/y',
@@ -79,7 +78,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Senior',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_1.jpeg',
       'jobTitle': 'Frontend Developer',
       'jobCompany': 'Blibli',
       'jobSalary': '\$80.000/y',
@@ -88,7 +87,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Junior',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_2.jpeg',
       'jobTitle': 'Cyber Security Analyst',
       'jobCompany': 'Bank Mandiri',
       'jobSalary': '\$130.000/y',
@@ -97,7 +96,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Full-time',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_3.jpeg',
       'jobTitle': 'Machine Learning Engineer',
       'jobCompany': 'Grab',
       'jobSalary': '\$140.000/y',
@@ -106,7 +105,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
       'jobPosition': 'Senior',
     },
     {
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_4.jpeg',
       'jobTitle': 'DevOps Engineer',
       'jobCompany': 'Tokopedia',
       'jobSalary': '\$100.000/y',
@@ -178,12 +177,7 @@ class _JobSavedPageState extends State<JobSavedPage> {
                         jobLocation: job['jobLocation'],
                         jobStatus: job['jobStatus'],
                         jobPosition: job['jobPosition'],
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return JobDetailPage();
-                          }));
-                        },
+                        onTap: () {},
                       ),
                     );
                   }),

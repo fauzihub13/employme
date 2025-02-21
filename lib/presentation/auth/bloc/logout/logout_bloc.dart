@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:employme/data/datasource/auth_local_datasource.dart';
+import 'package:meta/meta.dart';
 
 part 'logout_event.dart';
 part 'logout_state.dart';

@@ -16,7 +16,7 @@ class _ChatListPageState extends State<ChatListPage> {
   List<Map<String, dynamic>> privateChat = [
     {
       'name': 'John Doe',
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_4.jpeg',
       'message': 'Are you available for an interview tomorrow?',
       'time': '14:12 AM',
       'isRead': false,
@@ -24,7 +24,7 @@ class _ChatListPageState extends State<ChatListPage> {
     },
     {
       'name': 'Jane Smith',
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_5.jpeg',
       'message': 'Thanks for your response!',
       'time': '13:45 PM',
       'isRead': true,
@@ -32,7 +32,7 @@ class _ChatListPageState extends State<ChatListPage> {
     },
     {
       'name': 'Michael Johnson',
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_3.jpeg',
       'message': 'Let’s schedule a meeting.',
       'time': '10:30 AM',
       'isRead': false,
@@ -40,7 +40,7 @@ class _ChatListPageState extends State<ChatListPage> {
     },
     {
       'name': 'Emily Davis',
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_2.jpeg',
       'message': 'Looking forward to our discussion.',
       'time': 'Yesterday',
       'isRead': true,
@@ -48,7 +48,7 @@ class _ChatListPageState extends State<ChatListPage> {
     },
     {
       'name': 'David Wilson',
-      'image': 'assets/images/avatar.jpg',
+      'image': 'assets/images/company/company_1.jpeg',
       'message': 'Can you send me the details?',
       'time': 'Monday',
       'isRead': false,
@@ -71,7 +71,7 @@ class _ChatListPageState extends State<ChatListPage> {
                   Expanded(
                     child: SearchInput(
                       controller: TextEditingController(),
-                      hintText: 'Search a job or position',
+                      hintText: 'Search message',
                     ),
                   ),
                   const SizedBox(width: 10),
