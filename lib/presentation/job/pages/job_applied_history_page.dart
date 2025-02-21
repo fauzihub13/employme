@@ -2,6 +2,7 @@ import 'package:employme/core/components/card_job_status.dart';
 import 'package:employme/core/components/custom_appbar.dart';
 import 'package:employme/core/components/custom_badge.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/presentation/job/pages/job_apply_tracking.dart';
 import 'package:flutter/material.dart';
 
 class JobAppliedHistoryPage extends StatefulWidget {
@@ -176,7 +177,12 @@ class _JobAppliedHistoryPageState extends State<JobAppliedHistoryPage> {
                         jobLocation: job['jobLocation'],
                         jobStatus: job['jobStatus'],
                         jobPosition: job['jobPosition'],
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return JobApplyTracking();
+                          }));
+                        },
                       ),
                     );
                   }),

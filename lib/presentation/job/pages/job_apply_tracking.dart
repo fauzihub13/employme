@@ -23,10 +23,10 @@ class JobApplyTracking extends StatelessWidget {
             child: CardJob(
                 image: job != null
                     ? job!.company!.logoPath!
-                    : 'assets/images/avatar.jpg',
+                    : 'assets/images/company/company_5.jpeg',
                 jobTitle: job != null ? job!.title! : 'Mobile Programmer',
                 jobCompany:
-                    job != null ? job!.company!.location! : 'Telkom Indonesia',
+                    job != null ? job!.company!.location! : 'Duracthsion Inc',
                 jobSalary: job != null
                     ? '\$${job!.salary!.max!.substring(0, job!.salary!.max!.length - 3)}'
                     : '\$90.000/y',
