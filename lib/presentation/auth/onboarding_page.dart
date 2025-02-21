@@ -3,7 +3,7 @@ import '/data/models/onboarsing_model.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../home/pages/landing_page.dart';
+import 'login_page.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -95,7 +95,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LandingPage(),
+                            builder: (context) => const LoginScreen(),
                           ),
                         );
                       },
@@ -125,7 +125,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LandingPage(),
+                            builder: (context) => const LoginScreen(),
                           ),
                         );
                       }

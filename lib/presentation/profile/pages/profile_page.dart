@@ -1,7 +1,11 @@
-import 'package:employme/core/components/card_job.dart';
-import 'package:employme/core/components/title_section.dart';
-import 'package:employme/presentation/job/pages/job_applied_history_page.dart';
+import '../../../data/datasource/auth_local_datasource.dart';
+import '/core/components/card_job.dart';
+import '/core/components/title_section.dart';
+import '/presentation/auth/login_page.dart';
+import '/presentation/job/pages/job_applied_history_page.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/constants/colors.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,6 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _authLocalDatasource = AuthLocalDatasource();
   List<Map<String, dynamic>> jobExperiences = [
     {
       'image': 'assets/images/avatar.jpg',
@@ -204,23 +209,58 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       const SizedBox(height: 10),
                       ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: educationList.length,
-                          itemBuilder: (context, index) {
-                            final education = educationList[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: CardJob(
-                                  image: education['image'],
-                                  experienceTitle: education['experienceTitle'],
-                                  experiencecompany:
-                                      education['experienceCompany'],
-                                  experienceLocation:
-                                      education['experienceLocation'],
-                                  experienceDate: education['experienceDate']),
-                            );
-                          })
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: educationList.length,
+                        itemBuilder: (context, index) {
+                          final education = educationList[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: CardJob(
+                                image: education['image'],
+                                experienceTitle: education['experienceTitle'],
+                                experiencecompany:
+                                    education['experienceCompany'],
+                                experienceLocation:
+                                    education['experienceLocation'],
+                                experienceDate: education['experienceDate']),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                      //logout button
+                      InkWell(
+                       onTap: () {
+                          _authLocalDatasource.deleteToken();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryBlue,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Logout',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
