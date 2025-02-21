@@ -1,11 +1,13 @@
 import 'package:employme/presentation/home/pages/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/constants/colors.dart';
-import '../../data/datasource/auth_local_datasource.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../data/datasource/auth_local_datasource.dart';
+import '../../../../data/datasource/auth_remote_datasource.dart';
+import '../../bloc/login/login_bloc.dart';
+
+import 'forgot_password.dart';
 import 'register_page.dart';
-import 'bloc/login/login_bloc.dart';
-import '../../data/datasource/auth_remote_datasource.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -93,8 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: AppColors.white,
-                        hintText: 'Email',
+                        labelText: 'Email',
+                        labelStyle: TextStyle(color: AppColors.darkGrey),
+                        hintText: 'Enter your email',
                         hintStyle: TextStyle(color: AppColors.darkGrey),
                         prefixIcon: Icon(
                           Icons.email_outlined,
@@ -104,6 +107,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide.none,
                         ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColors.primaryBlue),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColors.red),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColors.red),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 16),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -113,19 +134,41 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     const SizedBox(height: 16),
-                    // Password field
                     TextFormField(
                       controller: _passwordController,
                       obscureText: _obscurePassword,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: AppColors.white,
-                        hintText: 'Password',
+                        labelText: 'Password',
+                        labelStyle: TextStyle(color: AppColors.darkGrey),
+                        hintText: 'Enter your password',
                         hintStyle: TextStyle(color: AppColors.darkGrey),
                         prefixIcon: Icon(
                           Icons.lock_outline,
                           color: AppColors.darkGrey,
                         ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColors.primaryBlue),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColors.red),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: AppColors.red),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 16),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword
@@ -138,10 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               _obscurePassword = !_obscurePassword;
                             });
                           },
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
                         ),
                       ),
                       validator: (value) {
@@ -175,7 +214,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // TODO: Implement forgot password functionality
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ForgotPassword(),
+                              ),
+                            );
                           },
                           child: Text(
                             'Forgot Password?',

@@ -1,12 +1,13 @@
 import 'package:employme/core/constants/colors.dart';
 import 'package:employme/presentation/auth/bloc/login/login_bloc.dart';
+import 'package:employme/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'data/datasource/auth_local_datasource.dart';
 import 'data/datasource/auth_remote_datasource.dart';
-import 'presentation/auth/Splash_page.dart';
-import 'presentation/auth/onboarding_page.dart';
+import 'presentation/auth/pages/presentation/Splash_page.dart';
+import 'presentation/auth/pages/presentation/onboarding_page.dart';
 
 // void main() async{
 //   runApp(const MyApp());
@@ -25,11 +26,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginBloc(
-        authRemoteDatasource: AuthRemoteDatasource(),
-        authLocalDatasource: AuthLocalDatasource(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(
+            authRemoteDatasource: AuthRemoteDatasource(),
+            authLocalDatasource: AuthLocalDatasource(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) =>
+              LogoutBloc(authLocalDatasource: AuthLocalDatasource()),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'EmployMe',

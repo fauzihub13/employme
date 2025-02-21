@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/colors.dart';
+import '../../../../core/constants/colors.dart';
 import 'login_page.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -69,6 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   // Logo
                   Image.asset(
                     'assets/icons/logo.png',
+                    color: AppColors.primaryBlue,
                     height: 80,
                     width: 80,
                   ),
@@ -300,24 +301,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   // Social login buttons
                   Row(
+                    spacing: 24,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                       _socialLoginButton(
+                        onPressed: () {
+                          // TODO: Implement Google login
+                        },
+                        iconPath: 'assets/icons/google_ic.png',
+                      ),
                       _socialLoginButton(
-                        onPressed: () {},
-                        // iconPath: 'assets/icons/google.png',
+                        onPressed: () {
+                          // TODO: Implement Facebook login
+                        },
                         iconPath: 'assets/images/logo1.png',
                       ),
-                      const SizedBox(width: 20),
                       _socialLoginButton(
-                        onPressed: () {},
-                        // iconPath: 'assets/icons/facebook.png',
-                        iconPath: 'assets/images/logo1.png',
-                      ),
-                      const SizedBox(width: 20),
-                      _socialLoginButton(
-                        onPressed: () {},
-                        // iconPath: 'assets/icons/apple.png',
-                        iconPath: 'assets/images/logo1.png',
+                        onPressed: () {
+                          // TODO: Implement Apple login
+                        },
+                        iconPath: 'assets/icons/apple_ic.png',
                       ),
                     ],
                   ),
@@ -378,7 +381,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       obscureText: obscureText,
       decoration: InputDecoration(
         filled: true,
-        fillColor: AppColors.white,
+        labelText: hintText,
+        labelStyle: TextStyle(color: AppColors.darkGrey),
         hintText: hintText,
         hintStyle: TextStyle(color: AppColors.darkGrey),
         prefixIcon: Icon(
@@ -408,7 +412,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _socialLoginButton({
+ Widget _socialLoginButton({
     required VoidCallback onPressed,
     required String iconPath,
   }) {

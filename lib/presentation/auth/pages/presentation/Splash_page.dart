@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:employme/core/constants/colors.dart';
+import '/core/constants/colors.dart';
+import 'login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
 
-import '../../data/datasource/auth_local_datasource.dart';
-import '../home/pages/landing_page.dart';
-import 'onboarding_page.dart';
+import '../../../../data/datasource/auth_local_datasource.dart';
+import '../../../home/pages/landing_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -58,7 +58,7 @@ class _SplashPageState extends State<SplashPage> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => OnboardingPage(),
+              builder: (context) => LoginScreen(),
             ),
           );
         }

@@ -1,7 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../data/datasource/auth_local_datasource.dart';
+import '../../auth/bloc/logout/logout_bloc.dart';
 import '/core/components/card_job.dart';
 import '/core/components/title_section.dart';
-import '/presentation/auth/login_page.dart';
+import '../../auth/pages/presentation/login_page.dart';
 import '/presentation/job/pages/job_applied_history_page.dart';
 import 'package:flutter/material.dart';
 
@@ -229,38 +232,72 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       const SizedBox(height: 24),
                       //logout button
-                      InkWell(
-                       onTap: () {
-                          _authLocalDatasource.deleteToken();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
+                      BlocConsumer<LogoutBloc, LogoutState>(
+                        listener: (context, state) {
+                          if (state is LogoutSuccess) {
+                            // If logout is successful, navigate to login screen
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Logout successful',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                          } else if (state is LogoutFailure) {
+                            // If logout fails, show an error message
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Logout failed: ${state.error}',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is LogoutLoading) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          return InkWell(
+                            onTap: () {
+                              // Trigger the logout event
+                              context.read<LogoutBloc>().add(LogoutRequested());
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryBlue,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Logout',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
-                        child: Container(
-                          width: double.infinity,
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryBlue,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Logout',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      )
                     ],
                   ),
                 ),

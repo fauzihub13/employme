@@ -27,4 +27,23 @@ class AuthRemoteDatasource {
       return const Left('Failed to login');
     }
   }
+
+  //logout
+  Future<Either<String, void>> logout() async {
+    final url = Uri.parse('${Variables.baseUrl}/api/logout');
+    final response = await http.post(
+      url,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    );
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      return Right(null);
+    } else {
+      return const Left('Failed to logout');
+    }
+  }
 }
