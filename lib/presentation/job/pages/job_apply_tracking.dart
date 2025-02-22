@@ -28,8 +28,8 @@ class JobApplyTracking extends StatelessWidget {
                 jobCompany:
                     job != null ? job!.company!.location! : 'Duracthsion Inc',
                 jobSalary: job != null
-                    ? '\$${job!.salary!.max!.substring(0, job!.salary!.max!.length - 3)}'
-                    : '\$90.000/y',
+                    ? job!.salary!.max!.substring(0, job!.salary!.max!.length - 3)
+                    : '90.000/y',
                 jobLocation:
                     job != null ? job!.company!.location! : 'Jakarta Pusat'),
           ),

@@ -1,4 +1,6 @@
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/core/extensions/int_ext.dart';
+import 'package:employme/core/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
 
 class CardJob extends StatefulWidget {
@@ -60,7 +62,7 @@ class _CardJobState extends State<CardJob> {
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          'assets/images/avatar.jpg',
+                          'assets/images/company/comany_1.jpeg',
                           width: 50,
                           height: 50,
                           fit: BoxFit.cover,
@@ -100,7 +102,7 @@ class _CardJobState extends State<CardJob> {
                         flex: 1,
                         child: Text(
                           widget.jobSalary!.isNotEmpty
-                              ? ' ${widget.jobSalary!}'
+                              ? '${widget.jobSalary!.toIntegerFromText.toDollarCurrency()}/y'
                               : widget.experienceLocation!,
                           maxLines: 1,
                           textAlign: TextAlign.end,

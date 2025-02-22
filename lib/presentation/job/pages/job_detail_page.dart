@@ -1,6 +1,7 @@
 import 'package:employme/core/components/custom_button.dart';
 import 'package:employme/core/components/custom_header_clipper.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/core/extensions/int_ext.dart';
 import 'package:employme/core/extensions/string_ext.dart';
 import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:employme/presentation/job/pages/job_apply_page.dart';
@@ -166,7 +167,7 @@ class _JobDetailPageState extends State<JobDetailPage>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}',
+                            '${job.salary!.max!.substring(0, job.salary!.max!.length - 3).toIntegerFromText.toDollarCurrency()}/y',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,

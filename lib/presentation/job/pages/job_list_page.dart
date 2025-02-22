@@ -107,6 +107,7 @@ class _JobListPageState extends State<JobListPage> {
                   listener: (context, state) {},
                   builder: (context, state) {
                     if (state is JobLoading) {
+                      
                       return Center(
                           child: CircularProgressIndicator(
                               color: AppColors.primaryBlue));
@@ -149,13 +150,13 @@ class _JobListPageState extends State<JobListPage> {
                       return Center(
                         child: Text(
                           'Failed to load jobs.',
-                          style: TextStyle(color: Colors.red),
+                          style: TextStyle(color: AppColors.black),
                         ),
                       );
                     }
                     return Center(
                         child: Text(
-                            'Something went wrong. Please try again. ${state.toString()}'));
+                            'Something went wrong. Please try again.'));
                   },
                 ),
               )

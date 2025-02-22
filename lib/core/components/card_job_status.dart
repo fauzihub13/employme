@@ -1,5 +1,7 @@
 import 'package:employme/core/components/custom_badge.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/core/extensions/int_ext.dart';
+import 'package:employme/core/extensions/string_ext.dart';
 import 'package:employme/presentation/job/widgets/job_status.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +78,7 @@ class CardJobStatus extends StatelessWidget {
                           Flexible(
                             flex: 1,
                             child: Text(
-                              jobSalary!,
+                              '${jobSalary!.toIntegerFromText.toDollarCurrency()}/y',
                               maxLines: 1,
                               textAlign: TextAlign.end,
                               style: TextStyle(

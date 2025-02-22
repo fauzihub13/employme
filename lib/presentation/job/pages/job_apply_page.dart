@@ -38,7 +38,7 @@ class _JobApplyPageState extends State<JobApplyPage> {
                   jobTitle: job.title!,
                   jobCompany: job.company!.name!,
                   jobSalary:
-                      '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}/y',
+                      job.salary!.max!.substring(0, job.salary!.max!.length - 3),
                   jobLocation: job.company!.location!),
             ),
             const SizedBox(height: 22),

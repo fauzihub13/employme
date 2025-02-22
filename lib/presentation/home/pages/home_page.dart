@@ -132,7 +132,9 @@ class _HomePageState extends State<HomePage> {
                         );
                       }
 
-                      return Text('as');
+                      return Center(
+                          child:
+                              Text('Something went wrong. Please try again.'));
                     },
                   ),
                   const SizedBox(
@@ -171,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                                   jobTitle: job.title!,
                                   jobCompany: job.company!.name!,
                                   jobSalary:
-                                      '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}',
+                                      job.salary!.max!.substring(0, job.salary!.max!.length - 3),
                                   jobLocation: job.company!.location!,
                                   onTap: () {
                                     Navigator.push(context,
@@ -193,8 +195,8 @@ class _HomePageState extends State<HomePage> {
                         );
                       }
                       return Center(
-                          child: Text(
-                              'Something went wrong. Please try again. ${state.toString()}'));
+                          child:
+                              Text('Something went wrong. Please try again.'));
                     },
                   ),
                 ],

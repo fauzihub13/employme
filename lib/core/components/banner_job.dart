@@ -1,4 +1,5 @@
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/core/extensions/int_ext.dart';
 import 'package:employme/core/extensions/string_ext.dart';
 import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +42,7 @@ class _BannerJobState extends State<BannerJob> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: 
-                  job.company!.logoPath!.startsWith('http')
+                  child: job.company!.logoPath!.startsWith('http')
                       ? Image.network(
                           job.company!.logoPath!,
                           width: 50,
@@ -121,7 +121,7 @@ class _BannerJobState extends State<BannerJob> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '\$${job.salary!.max!.substring(0, job.salary!.max!.length - 3)}/y',
+                  '${job.salary!.max!.substring(0, job.salary!.max!.length - 3).toIntegerFromText.toDollarCurrency()}/y',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
