@@ -2,6 +2,7 @@ import 'package:employme/core/components/card_job_status.dart';
 import 'package:employme/core/components/custom_appbar.dart';
 import 'package:employme/core/components/custom_badge.dart';
 import 'package:employme/core/constants/colors.dart';
+import 'package:employme/data/models/respone/job_response_model.dart';
 import 'package:employme/presentation/job/pages/job_apply_tracking.dart';
 import 'package:flutter/material.dart';
 
@@ -166,21 +167,36 @@ class _JobAppliedHistoryPageState extends State<JobAppliedHistoryPage> {
               child: ListView.builder(
                   itemCount: jobList.length,
                   itemBuilder: (context, index) {
-                    final job = jobList[index];
+                    final jobData = jobList[index];
+                    final jobModel = Job(
+                      title: jobData['jobTitle'],
+                      company: Company(
+                        id: 102,
+                        name: jobData['jobCompany'],
+                        logoPath: jobData['image'],
+                        location: jobData['jobLocation'],
+                      ),
+                      salary: Salary(
+                        max: jobData['jobSalary'],
+                      ),
+                      location: jobData['jobLocation'],
+                    );
                     return Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: CardJobStatus(
-                        image: job['image'],
-                        jobTitle: job['jobTitle'],
-                        jobCompany: job['jobCompany'],
-                        jobSalary: job['jobSalary'],
-                        jobLocation: job['jobLocation'],
-                        jobStatus: job['jobStatus'],
-                        jobPosition: job['jobPosition'],
+                        image: jobData['image'],
+                        jobTitle: jobData['jobTitle'],
+                        jobCompany: jobData['jobCompany'],
+                        jobSalary: jobData['jobSalary'],
+                        jobLocation: jobData['jobLocation'],
+                        jobStatus: jobData['jobStatus'],
+                        jobPosition: jobData['jobPosition'],
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return JobApplyTracking();
+                            return JobApplyTracking(
+                              job: jobModel,
+                            );
                           }));
                         },
                       ),

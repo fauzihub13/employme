@@ -26,9 +26,10 @@ class JobApplyTracking extends StatelessWidget {
                     : 'assets/images/company/company_5.jpeg',
                 jobTitle: job != null ? job!.title! : 'Mobile Programmer',
                 jobCompany:
-                    job != null ? job!.company!.location! : 'Duracthsion Inc',
+                    job != null ? job!.company!.name! : 'Duracthsion Inc',
                 jobSalary: job != null
-                    ? job!.salary!.max!.substring(0, job!.salary!.max!.length - 3)
+                    ? job!.salary!.max!
+                        .substring(0, job!.salary!.max!.length - 3)
                     : '90.000/y',
                 jobLocation:
                     job != null ? job!.company!.location! : 'Jakarta Pusat'),

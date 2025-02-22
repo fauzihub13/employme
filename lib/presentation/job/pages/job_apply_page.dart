@@ -28,105 +28,107 @@ class _JobApplyPageState extends State<JobApplyPage> {
     return Scaffold(
       appBar: CustomAppbar(title: 'Apply', canBack: true),
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              color: AppColors.white,
-              child: CardJob(
-                  image: job.company!.logoPath!,
-                  jobTitle: job.title!,
-                  jobCompany: job.company!.name!,
-                  jobSalary:
-                      job.salary!.max!.substring(0, job.salary!.max!.length - 3),
-                  jobLocation: job.company!.location!),
-            ),
-            const SizedBox(height: 22),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  TitleSection(title: 'Select a profile', canPress: false),
-                  const SizedBox(height: 10),
-                  Row(
-                    spacing: 16,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: CardProfileOption(
-                            avatar: 'assets/images/profile.jpeg',
-                            name: 'John Dae',
-                            title: 'Programmer',
-                            isSelected: profileSelected == 0,
-                            onTap: () {
-                              setState(() {
-                                profileSelected = 0;
-                              });
-                            }),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: CardProfileOption(
-                            avatar: 'assets/images/profile.jpeg',
-                            name: 'John Dae',
-                            title: 'Designer',
-                            isSelected: profileSelected == 1,
-                            onTap: () {
-                              setState(() {
-                                profileSelected = 1;
-                              });
-                            }),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 22),
-                  TitleSection(title: 'Select a resume', canPress: false),
-                  const SizedBox(height: 10),
-                  Row(
-                    spacing: 16,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: CardResumeOption(
-                            name: 'John Dae',
-                            title: 'Programmer',
-                            isSelected: resumeSelected == 0,
-                            color: AppColors.green,
-                            onTap: () {
-                              setState(() {
-                                resumeSelected = 0;
-                              });
-                            }),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: CardResumeOption(
-                            name: 'John Dae',
-                            title: 'Designer',
-                            isSelected: resumeSelected == 1,
-                            onTap: () {
-                              setState(() {
-                                resumeSelected = 1;
-                              });
-                            }),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 22),
-                  TitleSection(
-                      title: 'Cover Later',
-                      detailTitle: 'optional',
-                      canPress: false),
-                  const SizedBox(height: 10),
-                  CustomTextArea(
-                    controller: TextEditingController(),
-                    maxLines: 7,
-                    hintText: 'Write a cover letter...',
-                  )
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                color: AppColors.white,
+                child: CardJob(
+                    image: job.company!.logoPath!,
+                    jobTitle: job.title!,
+                    jobCompany: job.company!.name!,
+                    jobSalary:
+                        job.salary!.max!.substring(0, job.salary!.max!.length - 3),
+                    jobLocation: job.company!.location!),
               ),
-            ),
-          ],
+              const SizedBox(height: 22),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    TitleSection(title: 'Select a profile', canPress: false),
+                    const SizedBox(height: 10),
+                    Row(
+                      spacing: 16,
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: CardProfileOption(
+                              avatar: 'assets/images/profile.jpeg',
+                              name: 'John Dae',
+                              title: 'Programmer',
+                              isSelected: profileSelected == 0,
+                              onTap: () {
+                                setState(() {
+                                  profileSelected = 0;
+                                });
+                              }),
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: CardProfileOption(
+                              avatar: 'assets/images/profile.jpeg',
+                              name: 'John Dae',
+                              title: 'Designer',
+                              isSelected: profileSelected == 1,
+                              onTap: () {
+                                setState(() {
+                                  profileSelected = 1;
+                                });
+                              }),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 22),
+                    TitleSection(title: 'Select a resume', canPress: false),
+                    const SizedBox(height: 10),
+                    Row(
+                      spacing: 16,
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: CardResumeOption(
+                              name: 'John Dae',
+                              title: 'Programmer',
+                              isSelected: resumeSelected == 0,
+                              color: AppColors.green,
+                              onTap: () {
+                                setState(() {
+                                  resumeSelected = 0;
+                                });
+                              }),
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: CardResumeOption(
+                              name: 'John Dae',
+                              title: 'Designer',
+                              isSelected: resumeSelected == 1,
+                              onTap: () {
+                                setState(() {
+                                  resumeSelected = 1;
+                                });
+                              }),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 22),
+                    TitleSection(
+                        title: 'Cover Later',
+                        detailTitle: 'optional',
+                        canPress: false),
+                    const SizedBox(height: 10),
+                    CustomTextArea(
+                      controller: TextEditingController(),
+                      maxLines: 7,
+                      hintText: 'Write a cover letter...',
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(

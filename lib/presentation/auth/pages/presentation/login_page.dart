@@ -244,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor: Colors.green,
                             ),
                           );
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const LandingPage(),
