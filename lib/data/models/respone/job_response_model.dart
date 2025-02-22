@@ -357,7 +357,8 @@ final JobResponseModel fakeJobData = JobResponseModel(
       company: Company(
         id: 101,
         name: "TechCorp",
-        logoPath: "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
+        logoPath:
+            "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
         location: "San Francisco, CA",
       ),
       salary: Salary(
@@ -374,7 +375,8 @@ final JobResponseModel fakeJobData = JobResponseModel(
       company: Company(
         id: 102,
         name: "DesignStudio",
-        logoPath: "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
+        logoPath:
+            "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
         location: "New York, NY",
       ),
       salary: Salary(
@@ -391,7 +393,8 @@ final JobResponseModel fakeJobData = JobResponseModel(
       company: Company(
         id: 103,
         name: "AI Solutions",
-        logoPath: "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
+        logoPath:
+            "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
         location: "Austin, TX",
       ),
       salary: Salary(
