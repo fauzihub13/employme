@@ -111,17 +111,6 @@ class _HomePageState extends State<HomePage> {
                                 )),
                           ),
                         );
-
-                        // return Container(
-                        //   height: 176,
-                        //   width: 200,
-                        //   color: AppColors.baseColor,
-                        //   child: Center(
-                        //     child: CircularProgressIndicator(
-                        //       color: AppColors.primaryBlue,
-                        //     ),
-                        //   ),
-                        // );
                       } else if (state is JobLoaded) {
                         jobs = state.jobList;
                         return SizedBox(
