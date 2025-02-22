@@ -11,6 +11,7 @@ import 'package:employme/presentation/job/pages/job_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class JobListPage extends StatefulWidget {
   const JobListPage({super.key});
@@ -107,10 +108,32 @@ class _JobListPageState extends State<JobListPage> {
                   listener: (context, state) {},
                   builder: (context, state) {
                     if (state is JobLoading) {
-                      
-                      return Center(
-                          child: CircularProgressIndicator(
-                              color: AppColors.primaryBlue));
+                      return Skeletonizer(
+                        enabled: true,
+                        effect: ShimmerEffect(
+                            baseColor: AppColors.lightGrey,
+                            highlightColor:
+                                AppColors.darkGrey.withValues(alpha: 0.5),
+                            duration: const Duration(milliseconds: 1500)),
+                        child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: EdgeInsets.all(0),
+                            itemCount: 4,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: CardJob(
+                                  image: 'assets/images/company/company_1.jpeg',
+                                  jobTitle: 'Programmer',
+                                  jobCompany: 'Dathusion Company',
+                                  jobSalary: '120000',
+                                  jobLocation: 'Jakarta',
+                                  onTap: () {},
+                                ),
+                              );
+                            }),
+                      );
                     } else if (state is JobLoaded) {
                       searchResults = state.jobList;
                       final filteredJobs = searchController.text.isEmpty
@@ -155,8 +178,7 @@ class _JobListPageState extends State<JobListPage> {
                       );
                     }
                     return Center(
-                        child: Text(
-                            'Something went wrong. Please try again.'));
+                        child: Text('Something went wrong. Please try again.'));
                   },
                 ),
               )

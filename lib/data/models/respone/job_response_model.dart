@@ -348,3 +348,81 @@ class Pagination {
         "links": links?.toMap(),
       };
 }
+
+final JobResponseModel fakeJobData = JobResponseModel(
+  data: [
+    Job(
+      id: 1,
+      title: "Software Engineer",
+      company: Company(
+        id: 101,
+        name: "TechCorp",
+        logoPath: "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
+        location: "San Francisco, CA",
+      ),
+      salary: Salary(
+        min: "80000",
+        max: "120000",
+        formatted: "\$80,000 - \$120,000",
+      ),
+      location: "San Francisco, CA",
+      jobType: "Full-time",
+    ),
+    Job(
+      id: 2,
+      title: "Product Designer",
+      company: Company(
+        id: 102,
+        name: "DesignStudio",
+        logoPath: "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
+        location: "New York, NY",
+      ),
+      salary: Salary(
+        min: "70000",
+        max: "100000",
+        formatted: "\$70,000 - \$100,000",
+      ),
+      location: "New York, NY",
+      jobType: "Remote",
+    ),
+    Job(
+      id: 3,
+      title: "Data Scientist",
+      company: Company(
+        id: 103,
+        name: "AI Solutions",
+        logoPath: "https://i.pinimg.com/736x/93/e8/88/93e8886d6d4fc26d170965a3ccf958f5.jpg",
+        location: "Austin, TX",
+      ),
+      salary: Salary(
+        min: "90000",
+        max: "130000",
+        formatted: "\$90,000 - \$130,000",
+      ),
+      location: "Austin, TX",
+      jobType: "Contract",
+    ),
+  ],
+  pagination: Pagination(
+    total: 3,
+    count: 3,
+    perPage: 3,
+    currentPage: 1,
+    totalPages: 1,
+  ),
+  links: Links(
+    next: null,
+    prev: null,
+    first: "https://example.com/api/jobs?page=1",
+    last: "https://example.com/api/jobs?page=1",
+  ),
+  meta: Meta(
+    currentPage: 1,
+    from: 1,
+    lastPage: 1,
+    path: "https://example.com/api/jobs",
+    perPage: 3,
+    to: 3,
+    total: 3,
+  ),
+);

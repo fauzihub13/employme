@@ -14,6 +14,7 @@ import 'package:employme/presentation/job/pages/job_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   final PageController pageController = PageController(initialPage: 0);
 
   List<Job> jobs = [];
+
+  final Job job = fakeJobData.data!.first;
 
   @override
   void initState() {
@@ -92,16 +95,33 @@ class _HomePageState extends State<HomePage> {
                     listener: (context, state) {},
                     builder: (context, state) {
                       if (state is JobLoading) {
-                        return Container(
-                          height: 176,
-                          width: 200,
-                          color: AppColors.baseColor,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.primaryBlue,
-                            ),
+                        return Skeletonizer(
+                          enabled: true,
+                          effect: ShimmerEffect(
+                              baseColor: AppColors.white.withValues(alpha: 0.2),
+                              highlightColor:
+                                  AppColors.primaryBlue.withValues(alpha: 0.2),
+                              duration: const Duration(milliseconds: 1500)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: GestureDetector(
+                                onTap: () {},
+                                child: BannerJob(
+                                  job: job,
+                                )),
                           ),
                         );
+
+                        // return Container(
+                        //   height: 176,
+                        //   width: 200,
+                        //   color: AppColors.baseColor,
+                        //   child: Center(
+                        //     child: CircularProgressIndicator(
+                        //       color: AppColors.primaryBlue,
+                        //     ),
+                        //   ),
+                        // );
                       } else if (state is JobLoaded) {
                         jobs = state.jobList;
                         return SizedBox(
@@ -153,10 +173,33 @@ class _HomePageState extends State<HomePage> {
                     listener: (context, state) {},
                     builder: (context, state) {
                       if (state is JobLoading) {
-                        return Center(
-                            widthFactor: 100,
-                            child: CircularProgressIndicator(
-                                color: AppColors.primaryBlue));
+                        return Skeletonizer(
+                          enabled: true,
+                          effect: ShimmerEffect(
+                              baseColor: AppColors.lightGrey,
+                              highlightColor:
+                                  AppColors.darkGrey.withValues(alpha: 0.5),
+                              duration: const Duration(milliseconds: 1500)),
+                          child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              padding: EdgeInsets.all(0),
+                              itemCount: 4,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: CardJob(
+                                    image:
+                                        'assets/images/company/company_1.jpeg',
+                                    jobTitle: 'Programmer',
+                                    jobCompany: 'Dathusion Company',
+                                    jobSalary: '120000',
+                                    jobLocation: 'Jakarta',
+                                    onTap: () {},
+                                  ),
+                                );
+                              }),
+                        );
                       } else if (state is JobLoaded) {
                         jobs = state.jobList;
                         return ListView.builder(
@@ -172,8 +215,8 @@ class _HomePageState extends State<HomePage> {
                                   image: job.company!.logoPath!,
                                   jobTitle: job.title!,
                                   jobCompany: job.company!.name!,
-                                  jobSalary:
-                                      job.salary!.max!.substring(0, job.salary!.max!.length - 3),
+                                  jobSalary: job.salary!.max!.substring(
+                                      0, job.salary!.max!.length - 3),
                                   jobLocation: job.company!.location!,
                                   onTap: () {
                                     Navigator.push(context,
